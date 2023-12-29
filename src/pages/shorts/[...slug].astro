@@ -1,0 +1,33 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import TagsList from '../../components/TagsList.astro';
+import RecentShortsList from '../../components/RecentShortsList.astro';
+import { getPositionOfLineAndCharacter } from 'typescript';
+
+export async function getStaticPaths() {
+  const shorts = await getCollection('shorts');
+
+  return shorts.map(short => {
+    // Print each entry's slug to the console
+    // console.log(entry.data.title);
+
+    return {
+      params: { slug: short.slug }, 
+      props: { short },
+    };
+  });
+}
+
+const { short } = Astro.props;
+const { Content, headings } = await short.render();
+
+
+---
+
+<Layout title='Test'>
+  <Content />
+  <TagsList tags={short.data.tags} />
+
+  <RecentShortsList />
+</Layout>

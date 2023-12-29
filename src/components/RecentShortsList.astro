@@ -1,0 +1,35 @@
+---
+import { getCollection } from 'astro:content';
+const allShorts = await getCollection("shorts");
+---
+
+<div class="shortList">
+    {allShorts.map((short) => 
+        <a href={`/shorts/${short.slug}`} class="short"><p>{short.body}</p></a>
+    )}
+</div>
+
+<style>
+    .shortList {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5em;
+        max-width: 300px;
+    }
+    .short {
+        font-size: 16px;
+        line-height: 20px;
+        background-color: #fff;
+        padding: 12px 16px;
+        border-radius: 16px;
+    }
+    a {
+        color: #333;
+        text-decoration: none;
+    }
+
+    .short:hover {
+        /* background-color: #f1f1f1; */
+        border: 1px solid #dfdfdf;
+    }
+</style>

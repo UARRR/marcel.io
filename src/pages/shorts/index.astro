@@ -1,0 +1,14 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+const allShorts = await getCollection("shorts");
+---
+
+<Layout title="All Shorts">
+    <div>
+        {allShorts.map((short) => 
+            <p><a href={`/shorts/${short.slug}`}>{short.body}</a></p>
+        )}
+    </div>
+</Layout>

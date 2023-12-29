@@ -1,0 +1,30 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import TagsList from '../../components/TagsList.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+
+  return posts.map(post => {
+    // Print each entry's slug to the console
+    // console.log(entry.data.title);
+
+    return {
+      params: { slug: post.slug }, 
+      props: { post },
+    };
+  });
+}
+
+const { post } = Astro.props;
+const { Content, headings } = await post.render();
+
+
+---
+
+<Layout title='Test'>
+  <Content />
+  <TagsList tags={post.data.tags} />
+
+</Layout>
