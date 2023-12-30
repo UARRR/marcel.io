@@ -2,32 +2,31 @@
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
 import RecentShortsList from '../components/RecentShortsList.astro';
+import PostsList from '../components/PostsList.astro';
+import { Image } from 'astro:assets';
+import avatar from '../images/avatar.png';
+
 ---
 
 <Layout title="uarrr.org">
 	<main>
-		<div class="shortSidebar">
-			<div class="avatar"></div>
+		<div class="shortsSidebar">
+			<Image src={avatar} alt="Avatar" width="80" height="80" densities={[1.5, 2]} />
 			<RecentShortsList />
 		</div>
-		
-		<p>Hi, ich bin Marcel, ein Designer aus Schwerin, der mit seinen zwei Katzen...</p>
+
+		<div>
+			<p>Hi, ich bin Marcel, ein Designer aus Schwerin, der mit seinen zwei Katzen...</p>
+			<PostsList />
+		</div>
 	</main>
 </Layout>
 
 <style>
 	main {
-		margin: auto;
-		padding: 1rem;
-		width: 800px;
-		max-width: calc(100% - 2rem);
-		color: #333;
-		font-size: 20px;
-		line-height: 1.6;
-		border: 1px solid #333;
-		border-radius: 16px;
 		display: flex;
 		flex-direction: row;
+		gap: 2rem;
 	}
 
 	h1 {
@@ -38,15 +37,11 @@ import RecentShortsList from '../components/RecentShortsList.astro';
 		margin-bottom: 1em;
 	}
 
-	.shortSidebar {
+	.shortsSidebar {
 		display: flex;
+		gap: 1rem;
 	}
 
-	.avatar {
-		width: 120px;
-		height: 120px;
-		background-color: #f8f8f8;
-	}
 	
 
 </style>

@@ -1,0 +1,148 @@
+---
+import { getCollection } from 'astro:content';
+// const allPosts = await getCollection("posts");
+
+// Assuming the structure of your post, adjust as necessary
+interface Post {
+    slug: string;
+    data: {
+        title: string;
+        timestamp: Date;
+    };
+}
+
+interface GroupedPosts {
+    [key: string]: Post[];
+}
+
+const allPosts: Post[] = await getCollection("posts");
+
+// Function to group posts by year
+function groupPostsByYear(posts: Post[]): GroupedPosts {
+    const grouped = posts.reduce<GroupedPosts>((groupedPosts, post) => {
+        const year = new Date(post.data.timestamp).getFullYear().toString();
+        groupedPosts[year] = groupedPosts[year] || [];
+        groupedPosts[year].push(post);
+        return groupedPosts;
+    }, {});
+
+    // Sorting each year's posts by newest first
+    for (const year in grouped) {
+        grouped[year].sort((a, b) => new Date(b.data.timestamp).getTime() - new Date(a.data.timestamp).getTime());
+    }
+
+    return grouped;
+}
+
+const postsGroupedByYear = groupPostsByYear(allPosts);
+
+const horizontalPadding = "10px";
+---
+
+<div class="yearsList">
+    <h2>Längere Gedanken</h2>
+    {Object.keys(postsGroupedByYear).sort().reverse().map(year => (
+        <section class="year">
+            <h2 class="yearTitle">{year}</h2>
+            <ol class="postList">
+                {postsGroupedByYear[year].map(post => (
+                    <a href={`/posts/${post.slug}`} >
+                        <div class="cell">
+                            <p class="title">{post.data.title}</p>
+                            <div class="line" />
+                            <span class="date">{post.data.timestamp.toDateString()}</span>
+                        </div>
+                
+                    </a>
+                ))}
+            </ol>
+        </section>
+    ))}
+</div>
+
+<style define:vars={{ horizontalPadding }}>
+    .yearsList {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .year {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+    }
+
+    .yearTitle {
+        font-size: 1.2rem;
+        padding: 0px var(--horizontalPadding);
+    }
+
+    .postList {
+        display: flex;
+        flex-direction: column;
+        gap: 0rem;
+    }
+    
+
+    .cell { 
+        display: flex;
+        flex-direction: row;
+        align-items: baseline; /* Align items in the center vertically */
+        padding: 10px var(--horizontalPadding);
+        border-radius: 8px;
+        transition: transform 0.1s ease;
+    }
+
+    .cell:hover {
+        background-color: var(--bg-2)
+    }
+
+   
+
+    .cell:active {
+        transform: translateY(1px);
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    .title {
+        flex-grow: 0; /* Do not allow the title to grow */
+        flex-basis: auto; /* Set the base size to the content's intrinsic size */
+        /* Additional styling as needed */
+        color: var(--tx);
+    }
+
+    .line {
+        flex-grow: 1; /* Allow the line to take up the remaining space */
+        background-image: repeating-linear-gradient(
+            to right,
+            var(--ui), /* Dot color */
+            var(--ui) 2px, /* Dot width */
+            transparent 1px, /* Gap starts */
+            transparent 6px /* Gap width */
+        );
+        
+        height: 2px;
+        margin: 0px 8px; /* Optional: add a small margin for visual separation */
+    }
+
+    .cell:hover .line {
+        background-image: repeating-linear-gradient(
+            to right,
+            var(--ui-2), /* Dot color */
+            var(--ui-2) 2px, /* Dot width */
+            transparent 1px, /* Gap starts */
+            transparent 6px /* Gap width */
+        );
+    }
+
+    .date {
+        flex-shrink: 1; /* Allow the date to shrink if necessary */
+        color: var(--tx-3);
+        font-size: 0.8rem;
+    }
+
+</style>

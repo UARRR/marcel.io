@@ -1,6 +1,6 @@
 ---
-title: "Another one bites the dust"
-timestamp: 2023-12-29
+title: "Noch ein Jahr geschafft"
+timestamp: 2023-12-31
 tags: ["Lorem"]
 ---
 

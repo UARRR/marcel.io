@@ -29,5 +29,5 @@ const { Content, headings } = await short.render();
   <Content />
   <TagsList tags={short.data.tags} />
 
-  <RecentShortsList />
+  <RecentShortsList currentShortID={short.id} />
 </Layout>

@@ -1,35 +1,59 @@
 ---
 import { getCollection } from 'astro:content';
-const allShorts = await getCollection("shorts");
+import ShortCard from './ShortCard.astro';
+
+
+interface Props {
+	currentShortID?: string;
+}
+
+const { currentShortID } = Astro.props;
+
+// Wenn eine currentShortID angegeben wird, wird dieser aus der Liste ausgefiltert
+const allShorts = await getCollection("shorts", ({ id }) => {
+    if(currentShortID != null) {
+        // only return those where the id isn't the same as the provided id
+        return id != currentShortID
+    } else {
+        // return everything
+        return true
+    }
+});
 ---
 
-<div class="shortList">
-    {allShorts.map((short) => 
-        <a href={`/shorts/${short.slug}`} class="short"><p>{short.body}</p></a>
-    )}
+<div class="triangleAndList">
+    <div class="triangle" />
+    <div class="shortList">
+        {allShorts.map((short) =>
+            <ShortCard slug={short.slug} />
+        )}
+    
+        <a href="/shorts">Mehr</a>
+    </div>
 </div>
 
 <style>
+
+    .triangleAndList {
+        display: flex;
+        flex-direction: row;
+    }
     .shortList {
         display: flex;
         flex-direction: column;
         gap: 0.5em;
         max-width: 300px;
     }
-    .short {
-        font-size: 16px;
-        line-height: 20px;
-        background-color: #fff;
-        padding: 12px 16px;
-        border-radius: 16px;
-    }
-    a {
-        color: #333;
-        text-decoration: none;
+
+    .triangle {
+        width: 0; 
+        height: 0; 
+        border-top: 14px solid transparent;
+        border-bottom: 14px solid transparent; 
+        
+        border-right: 14px solid var(--bg-2); 
+
+        margin-top: 20px;
     }
 
-    .short:hover {
-        /* background-color: #f1f1f1; */
-        border: 1px solid #dfdfdf;
-    }
 </style>
