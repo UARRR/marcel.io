@@ -5,6 +5,7 @@ import RecentShortsList from '../components/RecentShortsList.astro';
 import PostsList from '../components/PostsList.astro';
 import { Image } from 'astro:assets';
 import avatar from '../images/avatar.png';
+import Introduction from '../components/Introduction.astro';
 
 ---
 
@@ -15,8 +16,9 @@ import avatar from '../images/avatar.png';
 			<RecentShortsList />
 		</div>
 
-		<div>
-			<p>Hi, ich bin Marcel, ein Designer aus Schwerin, der mit seinen zwei Katzen...</p>
+		<div class="content">
+			<Introduction />
+
 			<PostsList />
 		</div>
 	</main>
@@ -40,8 +42,16 @@ import avatar from '../images/avatar.png';
 	.shortsSidebar {
 		display: flex;
 		gap: 1rem;
+		flex-shrink: 0;
 	}
 
+	.content {
+		display: flex;
+		flex-direction: column;
+		gap: 4rem;
+	}
+
+	
 	
 
 </style>

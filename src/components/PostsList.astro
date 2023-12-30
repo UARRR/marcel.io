@@ -40,10 +40,10 @@ const horizontalPadding = "10px";
 ---
 
 <div class="yearsList">
-    <h2>Längere Gedanken</h2>
+    <h2 class="horizontalPadding">Längere Gedanken</h2>
     {Object.keys(postsGroupedByYear).sort().reverse().map(year => (
         <section class="year">
-            <h2 class="yearTitle">{year}</h2>
+            <h2 class="yearTitle horizontalPadding">{year}</h2>
             <ol class="postList">
                 {postsGroupedByYear[year].map(post => (
                     <a href={`/posts/${post.slug}`} >
@@ -75,6 +75,9 @@ const horizontalPadding = "10px";
 
     .yearTitle {
         font-size: 1.2rem;
+    }
+
+    .horizontalPadding {
         padding: 0px var(--horizontalPadding);
     }
 

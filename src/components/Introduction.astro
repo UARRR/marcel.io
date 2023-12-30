@@ -1,0 +1,47 @@
+---
+---
+
+<p class="introduction">
+    Hey, I'm Marcel, I design and code software, live together with my two cats 
+    <a href="link_for_gigabyte" class="cat-link"><span class="cat" id="gigabyte">Gigabyte</span></a> and 
+    <a href="link_for_millimeter" class="cat-link"><span class="cat" id="millimeter">Millimeter</span></a> 
+    in Schwerin and I like to read.
+</p>
+
+<style>
+    .introduction {
+		font-size: 1.5rem;
+		line-height: 2.4rem;
+		flex-shrink: 0;
+	}
+
+
+  .cat::before {
+    display: inline-block;
+    margin-right: 3px;
+    margin-left: 3px;
+    vertical-align: middle;
+    width: 20px; /* Adjust as needed */
+    height: 20px; /* Adjust as needed */
+    background-size: cover;
+    content: "";
+}
+
+#gigabyte::before {
+    background-image: url('../images/millimeter.png');
+}
+
+#millimeter::before {
+    background-image: url('../images/millimeter.png');
+}
+
+.cat-link {
+    text-decoration: underline; /* Removes underline from links */
+    color: inherit; /* Ensures link color matches surrounding text */
+}
+
+.cat-link:hover {
+    text-decoration: none; /* Optional: adds underline on hover for visual feedback */
+}
+
+</style>
