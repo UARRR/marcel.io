@@ -68,65 +68,81 @@ const postsGroupedByYear = groupPostsByYear(allPosts);
 const horizontalPadding = "10px";
 ---
 
-<div class="yearsList">
-    {Object.keys(postsGroupedByYear).sort().reverse().map(year => (
-        <section class="year">
-            <h2 class="yearTitle horizontalPadding">{year}</h2>
-            {Object.keys(postsGroupedByYear[year]).map(month => (
-                <div class="month">
-                    <h3 class="horizontalPadding">{month}</h3>
-                    <ol class="postList">
-                        {postsGroupedByYear[year][month].map(post => (
-                            <a href={`/posts/${post.slug}`} >
-                        <div class="cell">
-                            <p class="title">{post.data.title}</p>
-                            <div class="line" />
-                            
-                            <div class="tags">
-                                {post.data.tags.map((tag: string) =>
-                                    <span class="tag">{tag}</span>
-                                )}
+<section id="writing">
+    <h2>Writing</h2>
+    <div class="yearsList">
+        {Object.keys(postsGroupedByYear).sort().reverse().map(year => (
+            <section class="year">
+                <h3 class="yearTitle">{year}</h3>
+                {Object.keys(postsGroupedByYear[year]).map(month => (
+                    <div class="month">
+    
+                        <ol class="postList">
+                            {postsGroupedByYear[year][month].map(post => (
+                                <a href={`/posts/${post.slug}`} >
+                            <div class="cell">
+                                <p class="title">{post.data.title}</p>
+                                <div class="line" />
+    
+                                <div class="tags">
+                                    {post.data.tags.map((tag: string) =>
+                                        <span class="tag">{tag}</span>
+                                    )}
+                                </div>
+                                <span class="date">{post.data.timestamp.toDateString().split(' ').slice(1).join(' ')}</span>
                             </div>
-                            <span class="date">{post.data.timestamp.toDateString()}</span>
-                        </div>
-                
-                    </a>
-                        ))}
-                    </ol>
-                </div>
-            ))}
-        </section>
-    ))}
-</div>
+    
+                        </a>
+                            ))}
+                        </ol>
+                    </div>
+                ))}
+            </section>
+        ))}
+    </div>
+</section>
 
 
 <style define:vars={{ horizontalPadding }}>
+
+    #writing {
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+    }
     .yearsList {
         display: flex;
         flex-direction: column;
-        gap: 5rem;
+        gap: 3rem;
     }
 
     .year {
         display: flex;
         flex-direction: column;
-        gap: 1.8rem;
+        /* gap: 1.5rem; */
     }
 
     .yearTitle {
-        font-size: 1.4rem;
+        font-size: 1.4  rem;
+        margin-bottom: 1rem;
+        color: var(--ui-2)
     }
 
     .month {
         display: flex;
         flex-direction: column;
-        gap: 0.2rem
+        gap: 0rem;
+        /* border: 1px solid green; */
     }
 
     .month h3 {
+        display: inline-block;
         font-size: 1rem;
         font-weight: 300;
-        color: var(--tx-3)
+        color: var(--tx-3);
+        /* flex-shrink: 0; */
+        /* border: 1px solid red; */
+        /* width: 100px; */
     }
 
     .horizontalPadding {
@@ -144,14 +160,19 @@ const horizontalPadding = "10px";
         display: flex;
         flex-direction: row;
         align-items: baseline; /* Align items in the center vertically */
-        padding: 10px var(--horizontalPadding);
         border-radius: 8px;
         transition: transform 0.1s ease;
         gap: 0.4rem;
+        padding: 6px 0px;
     }
 
-    .cell:hover {
+    /* .cell:hover {
         background-color: var(--bg-2)
+    } */
+
+    .cell:hover .title {
+        /* text-decoration: underline; */
+        border-bottom: 1px solid var(--ui-3); /* Custom underline color */
     }
 
     .cell:active {

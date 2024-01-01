@@ -1,5 +1,5 @@
 ---
-title: "Being a designer who doesn‘t code might make you a bad designer in 2024 and forward"
+title: "Increased interacitivity requires designers to code"
 timestamp: 2023-06-26
 tags: ["Design", "Programming"]
 language: "English"

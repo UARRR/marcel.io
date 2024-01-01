@@ -1,6 +1,8 @@
 ---
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
 interface Props {
-	title: string;
+	title?: string;
 }
 
 const { title } = Astro.props;
@@ -14,12 +16,16 @@ const { title } = Astro.props;
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
+		<title>{title || "marcel.io"}</title>
 	</head>
 	<body>
-		<main>
-			<slot />
+		
 
+		<main>
+			<Header />
+			{title && <h1>{title}</h1> }
+			<slot />
+			<Footer />
 		</main>
 	</body>
 </html>
@@ -71,12 +77,25 @@ const { title } = Astro.props;
 	main {
 		max-width: 700px;
 		margin: auto;
+		display: flex;
+		flex-direction: column;
+		gap: 5rem;
 	}
 
 	a {
 		text-decoration: underline;
 		text-decoration-color: var(--tx-3);
 		color: var(--tx-2);
+	}
+
+
+	hr {
+		display: block;
+		height: 1px;
+		border: 0;
+		border-top: 1px solid var(--bg-2);
+		margin: 1em 0;
+		padding: 0;
 	}
 
 	

@@ -1,0 +1,38 @@
+---
+import { Image } from 'astro:assets';
+import avatar from '../images/marcel.png';
+
+---
+
+<div class="avatarAndMenu">
+    <a href="/"><Image src={avatar} alt="Avatar" width="60" height="60" densities={[1.5, 2]} id="avatar" /></a>
+
+    <ul id="navigation">
+        <li><a href="/about">About</a></li>
+        <li><a href="/now">Now</a></li>
+    </ul>
+</div>
+
+
+<style>
+	.avatarAndMenu {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+	}
+
+    #avatar {
+        border-radius: 300px;
+    }
+
+    #navigation {
+        display: flex;
+        flex-direction: row;
+        gap: 0.8rem;
+    }
+
+    #navigation li {
+        list-style-type: none;
+    }
+
+</style>

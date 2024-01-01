@@ -1,44 +1,29 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
 import RecentShortsList from '../components/RecentShortsList.astro';
 import PostsList from '../components/PostsList.astro';
-import { Image } from 'astro:assets';
-import avatar from '../images/avatar.png';
-import Introduction from '../components/Introduction.astro';
+import Header from '../components/Header.astro';
 
 ---
 
-<Layout title="marcel.io">
+<Layout>
 	<main>
-		<Image src={avatar} alt="Avatar" width="80" height="80" densities={[1.5, 2]} />
-		
-
 		<div class="content">
 			<RecentShortsList amountOfShortsVisible={1} />
 
-			<Introduction />
+			<hr />
 
 			<PostsList />
 
-			<div>
-				<p>RSS Feeds</p>
-				<ul>
-					<a href="/feed">Everything</a>
-					<a href="/posts.xml">Posts</a>
-					<a href="shorts.xml">Shorts</a>
-					<a href="">Books</a>
-				</ul>
-			</div>
 		</div>
 	</main>
 </Layout>
 
 <style>
 	main {
-		display: flex;
+		/* display: flex;
 		flex-direction: row;
-		gap: 2rem;
+		gap: 2rem; */
 	}
 
 	h1 {
