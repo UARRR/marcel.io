@@ -1,7 +1,8 @@
 ---
-title: "2022 Review"
-timestamp: 2022-12-31
-tags: ["Lorem"]
+title: "Welcome to 2024"
+timestamp: 2024-01-01
+tags: ["Year"]
+language: "German"
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut metus sollicitudin, maximus nisi vitae, lacinia massa. Cras eget lectus vitae ex fringilla accumsan ut sed tortor. Praesent aliquam ultrices nisi vel condimentum. Pellentesque tortor metus, tincidunt at ex eget, luctus ultrices nibh. Ut a efficitur mi. Aliquam tellus arcu, fermentum a nibh sit amet, porttitor tempor elit. Quisque lobortis quam sit amet molestie tristique. In fermentum urna non neque rhoncus, ac lobortis sapien pulvinar.

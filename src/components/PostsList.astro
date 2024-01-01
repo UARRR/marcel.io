@@ -13,27 +13,55 @@ interface Post {
 }
 
 interface GroupedPosts {
-    [key: string]: Post[];
+    [year: string]: {
+        [month: string]: Post[];
+    };
 }
 
 const allPosts: Post[] = await getCollection("posts");
 
 // Function to group posts by year
 function groupPostsByYear(posts: Post[]): GroupedPosts {
-    const grouped = posts.reduce<GroupedPosts>((groupedPosts, post) => {
+    // First, group and sort posts within each month
+    const groupedAndSorted = posts.reduce<GroupedPosts>((groupedPosts, post) => {
         const year = new Date(post.data.timestamp).getFullYear().toString();
-        groupedPosts[year] = groupedPosts[year] || [];
-        groupedPosts[year].push(post);
+        const month = new Date(post.data.timestamp).toLocaleString('default', { month: 'long' });
+
+        if (!groupedPosts[year]) {
+            groupedPosts[year] = {};
+        }
+
+        if (!groupedPosts[year][month]) {
+            groupedPosts[year][month] = [];
+        }
+
+        groupedPosts[year][month].push(post);
+
+        // Sort the posts within each month
+        groupedPosts[year][month].sort((a, b) => b.data.timestamp - a.data.timestamp);
+
         return groupedPosts;
     }, {});
 
-    // Sorting each year's posts by newest first
-    for (const year in grouped) {
-        grouped[year].sort((a, b) => new Date(b.data.timestamp).getTime() - new Date(a.data.timestamp).getTime());
-    }
+    // Then, sort the months within each year
+    Object.keys(groupedAndSorted).forEach(year => {
+        const sortedMonths = Object.keys(groupedAndSorted[year]).sort((a, b) => {
+            const monthA = new Date(`${a} 01, ${year}`).getMonth();
+            const monthB = new Date(`${b} 01, ${year}`).getMonth();
+            return monthB - monthA;
+        });
 
-    return grouped;
+        const sortedGroup = {};
+        sortedMonths.forEach(month => {
+            sortedGroup[month] = groupedAndSorted[year][month];
+        });
+        groupedAndSorted[year] = sortedGroup;
+    });
+
+    return groupedAndSorted;
 }
+
+
 
 const postsGroupedByYear = groupPostsByYear(allPosts);
 
@@ -41,45 +69,64 @@ const horizontalPadding = "10px";
 ---
 
 <div class="yearsList">
-    <h2 class="horizontalPadding">Längere Gedanken</h2>
     {Object.keys(postsGroupedByYear).sort().reverse().map(year => (
         <section class="year">
             <h2 class="yearTitle horizontalPadding">{year}</h2>
-            <ol class="postList">
-                {postsGroupedByYear[year].map(post => (
-                    <a href={`/posts/${post.slug}`} >
+            {Object.keys(postsGroupedByYear[year]).map(month => (
+                <div class="month">
+                    <h3 class="horizontalPadding">{month}</h3>
+                    <ol class="postList">
+                        {postsGroupedByYear[year][month].map(post => (
+                            <a href={`/posts/${post.slug}`} >
                         <div class="cell">
                             <p class="title">{post.data.title}</p>
                             <div class="line" />
                             
-                            {post.data.tags.map((tag: string) => 
-                                <span class="tag">{tag}</span>
-                            )}
+                            <div class="tags">
+                                {post.data.tags.map((tag: string) =>
+                                    <span class="tag">{tag}</span>
+                                )}
+                            </div>
                             <span class="date">{post.data.timestamp.toDateString()}</span>
                         </div>
                 
                     </a>
-                ))}
-            </ol>
+                        ))}
+                    </ol>
+                </div>
+            ))}
         </section>
     ))}
 </div>
+
 
 <style define:vars={{ horizontalPadding }}>
     .yearsList {
         display: flex;
         flex-direction: column;
-        gap: 2rem;
+        gap: 5rem;
     }
 
     .year {
         display: flex;
         flex-direction: column;
-        gap: 0.4rem;
+        gap: 1.8rem;
     }
 
     .yearTitle {
-        font-size: 1.2rem;
+        font-size: 1.4rem;
+    }
+
+    .month {
+        display: flex;
+        flex-direction: column;
+        gap: 0.2rem
+    }
+
+    .month h3 {
+        font-size: 1rem;
+        font-weight: 300;
+        color: var(--tx-3)
     }
 
     .horizontalPadding {
@@ -106,8 +153,6 @@ const horizontalPadding = "10px";
     .cell:hover {
         background-color: var(--bg-2)
     }
-
-   
 
     .cell:active {
         transform: translateY(1px);
@@ -148,16 +193,25 @@ const horizontalPadding = "10px";
         );
     }
 
+    .tags {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 0.1rem;
+    }
+
     .tag {
         display: inline-block;
         background-color: var(--bg-2);
         font-size: 0.7rem;
         padding: 1px 8px;
         border-radius: 50px;
+        color: var(--tx-3)
     }
 
     .cell:hover .tag {
         background-color: var(--ui);
+        color: var(--tx-2)
     }
 
     .date {

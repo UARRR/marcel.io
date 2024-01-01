@@ -9,17 +9,27 @@ import Introduction from '../components/Introduction.astro';
 
 ---
 
-<Layout title="uarrr.org">
+<Layout title="marcel.io">
 	<main>
-		<div class="shortsSidebar">
-			<Image src={avatar} alt="Avatar" width="80" height="80" densities={[1.5, 2]} />
-			<RecentShortsList />
-		</div>
+		<Image src={avatar} alt="Avatar" width="80" height="80" densities={[1.5, 2]} />
+		
 
 		<div class="content">
+			<RecentShortsList amountOfShortsVisible={1} />
+
 			<Introduction />
 
 			<PostsList />
+
+			<div>
+				<p>RSS Feeds</p>
+				<ul>
+					<a href="/feed">Everything</a>
+					<a href="/posts.xml">Posts</a>
+					<a href="shorts.xml">Shorts</a>
+					<a href="">Books</a>
+				</ul>
+			</div>
 		</div>
 	</main>
 </Layout>
