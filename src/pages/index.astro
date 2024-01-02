@@ -6,17 +6,14 @@ import Header from '../components/Header.astro';
 
 ---
 
-<Layout>
-	<main>
-		<div class="content">
-			<RecentShortsList amountOfShortsVisible={1} />
+<Layout showingShort={true}>
+	<div class="content">
 
-			<hr />
+		<p>Insert Book Reviews here</p>
 
-			<PostsList />
-
-		</div>
-	</main>
+		<hr />
+		<PostsList />
+	</div>
 </Layout>
 
 <style>

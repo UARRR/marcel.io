@@ -1,28 +1,52 @@
 ---
 import { Image } from 'astro:assets';
 import avatar from '../images/marcel.png';
+import RecentShortsList from './RecentShortsList.astro';
+
+interface Props {
+	showingShort: boolean
+}
+
+const { showingShort } = Astro.props
 
 ---
 
-<div class="avatarAndMenu">
-    <a href="/"><Image src={avatar} alt="Avatar" width="60" height="60" densities={[1.5, 2]} id="avatar" /></a>
-
-    <ul id="navigation">
-        <li><a href="/about">About</a></li>
-        <li><a href="/now">Now</a></li>
-    </ul>
+<div id="headerAndShort">
+    <div class="avatarAndMenu">
+        <a href="/"><Image src={avatar} alt="Avatar" width="60" height="60" densities={[1.5, 2]} id="avatar" /></a>
+    
+        <ul id="navigation">
+            <li><a href="/about">About</a></li>
+            <li><a href="/now">Now</a></li>
+        </ul>
+    </div>
+    
+    {showingShort && <RecentShortsList amountOfShortsVisible={1} showingTriangle /> }
 </div>
 
 
 <style>
+    #headerAndShort {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+    }
+
 	.avatarAndMenu {
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
+        align-items: center;
 	}
 
     #avatar {
         border-radius: 300px;
+        transition: transform 0.1s ease;
+    }
+
+    #avatar:active {
+        transform: translateY(2px);
     }
 
     #navigation {

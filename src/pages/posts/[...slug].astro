@@ -20,12 +20,27 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content, headings } = await post.render();
-
-
 ---
 
 <Layout title={ post.data.title }>
-  <Content />
-  <TagsList tags={post.data.tags} />
-
+  <article>
+    <Content />
+    <TagsList tags={post.data.tags} />
+  </article>
 </Layout>
+
+<style>
+
+  #content {
+    /* border: 1px solid blue; */
+    /* display: flex;
+    flex-direction: column;
+    gap: 2rem; */
+  }
+
+
+
+  #content :global(h2) + :global(p) {
+    margin-top: 20px;
+  }
+</style>

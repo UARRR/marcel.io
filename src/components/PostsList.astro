@@ -38,7 +38,7 @@ function groupPostsByYear(posts: Post[]): GroupedPosts {
         groupedPosts[year][month].push(post);
 
         // Sort the posts within each month
-        groupedPosts[year][month].sort((a, b) => b.data.timestamp - a.data.timestamp);
+        groupedPosts[year][month].sort((a, b) => b.data.timestamp.getTime() - a.data.timestamp.getTime());
 
         return groupedPosts;
     }, {});
@@ -51,7 +51,7 @@ function groupPostsByYear(posts: Post[]): GroupedPosts {
             return monthB - monthA;
         });
 
-        const sortedGroup = {};
+        const sortedGroup: { [month: string]: Post[] } = {};
         sortedMonths.forEach(month => {
             sortedGroup[month] = groupedAndSorted[year][month];
         });
@@ -61,15 +61,13 @@ function groupPostsByYear(posts: Post[]): GroupedPosts {
     return groupedAndSorted;
 }
 
-
-
 const postsGroupedByYear = groupPostsByYear(allPosts);
 
 const horizontalPadding = "10px";
 ---
 
 <section id="writing">
-    <h2>Writing</h2>
+    <h3>Writing</h3>
     <div class="yearsList">
         {Object.keys(postsGroupedByYear).sort().reverse().map(year => (
             <section class="year">
@@ -81,14 +79,16 @@ const horizontalPadding = "10px";
                             {postsGroupedByYear[year][month].map(post => (
                                 <a href={`/posts/${post.slug}`} >
                             <div class="cell">
-                                <p class="title">{post.data.title}</p>
+                                <span class="title">{post.data.title}</span>
                                 <div class="line" />
     
+                                <!--   
                                 <div class="tags">
                                     {post.data.tags.map((tag: string) =>
                                         <span class="tag">{tag}</span>
                                     )}
-                                </div>
+                                </div> 
+                                -->
                                 <span class="date">{post.data.timestamp.toDateString().split(' ').slice(1).join(' ')}</span>
                             </div>
     
@@ -170,13 +170,14 @@ const horizontalPadding = "10px";
         background-color: var(--bg-2)
     } */
 
-    .cell:hover .title {
-        /* text-decoration: underline; */
-        border-bottom: 1px solid var(--ui-3); /* Custom underline color */
+    .cell:hover .title{
+         text-decoration: underline;
+        text-decoration-skip: objects;
+        text-decoration-color: var(--tx); 
     }
 
     .cell:active {
-        transform: translateY(1px);
+        transform: translateY(2px);
     }
 
     a {
@@ -231,8 +232,8 @@ const horizontalPadding = "10px";
     }
 
     .cell:hover .tag {
-        background-color: var(--ui);
-        color: var(--tx-2)
+        /* background-color: var(--bg-2); */
+        /* color: var(--tx-2) */
     }
 
     .date {

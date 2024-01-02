@@ -4,11 +4,12 @@ import ShortCard from './ShortCard.astro';
 
 
 interface Props {
-	currentShortID?: string;
-    amountOfShortsVisible?: number
+	currentShortID?: string,
+    amountOfShortsVisible?: number,
+    showingTriangle?: boolean
 }
 
-const { currentShortID, amountOfShortsVisible } = Astro.props;
+const { currentShortID, amountOfShortsVisible, showingTriangle = false } = Astro.props;
 
 // Wenn eine currentShortID angegeben wird, wird dieser aus der Liste ausgefiltert
 const allShorts = await getCollection("shorts", ({ id }) => {
@@ -27,13 +28,12 @@ allShorts.sort((a, b) => b.data.timestamp - a.data.timestamp);
 ---
 
 <div class="triangleAndList">
-    <div class="triangle" />
+    {showingTriangle && <div class="triangle" />}
     <div class="shortList">
         {allShorts.slice(0,amountOfShortsVisible).map((short) =>
             <ShortCard slug={short.slug} />
         )}
     
-        <a href="/shorts">Mehr</a>
     </div>
 </div>
 

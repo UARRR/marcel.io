@@ -1,8 +1,8 @@
 ---
 title: "Hello 2024"
 timestamp: 2024-01-01
-tags: ["Year"]
-language: "German"
+tags: ["Digital Gardening"]
+language: "English"
 ---
 
 It's not surprising to read something like what you're about to at the beginning of a new year. People find time to relax and think over the holidays. They find motivation, feel like everything is possible, and decide to finally give it a go in January. Whatever "it" may be.

@@ -1,0 +1,23 @@
+---
+interface Props {
+	rating: number
+}
+
+const { rating } = Astro.props;
+---
+
+<div class="star-rating">
+    {Array.from({ length: 5 }, (_, i) => i + 1).map((num) => (
+      <span class={num <= rating ? 'filled' : 'notFilled'}>★</span>
+    ))}
+</div>
+
+<style>
+    .filled {
+        color: gold;
+    }
+
+    .notFilled {
+        color: var(--ui-3);
+    }
+</style>

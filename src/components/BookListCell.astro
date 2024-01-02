@@ -1,0 +1,48 @@
+---
+import { getEntry } from 'astro:content';
+import StarRating from './StarRating.astro';
+const { slug } = Astro.props
+
+const book = await getEntry('books', slug);
+
+const coverUrl = book?.data.olid ? `https://covers.openlibrary.org/b/olid/${book.data.olid}-L.jpg` : '';
+
+---
+
+{book && 
+<a href={`/books/${book.slug}`} class="book">    
+    {coverUrl && <img src={coverUrl} alt={`Cover of ${book.data.title}`} class="cover" />}
+    <StarRating rating={book.data.rating} />
+</a>
+}
+
+<style>
+
+    a {
+        text-decoration: none;
+    }
+
+    .book {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 1rem;
+        background-color: var(--bg-2);
+        padding: 20px 20px;
+        border-radius: 12px;
+        
+    }
+
+    .book:hover .cover {
+        box-shadow: var(--shadow-elevation-high);
+        transform: translateY(-10px) rotate(3deg);
+        
+        
+    }
+    .cover {
+        max-width: 100%;
+        border-radius: 8px;
+        box-shadow: var(--shadow-elevation-low);
+        transition: transform 0.1s ease-in-out;
+    }
+</style>

@@ -1,0 +1,53 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import StarRating from '../../components/StarRating.astro';
+
+export async function getStaticPaths() {
+  const books = await getCollection('books');
+
+  return books.map(book => {
+    return {
+      params: { slug: book.slug }, 
+      props: { book },
+    };
+  });
+}
+
+const { book } = Astro.props;
+const { Content } = await book.render();
+---
+
+<Layout title={book.data.title}>
+
+  <div>
+    { book.data.subtitle && <p>{book.data.subtitle}</p> }
+
+      <div id="authors">
+        {book.data.author.map((author: string) =>
+          <span class="author">{author}</span>
+        )}
+      </div>
+
+      <StarRating rating={book.data.rating} />
+    
+     <Content />
+  </div>
+</Layout>
+
+<style>
+  #authors {
+    display: flex;
+    flex-direction: row;
+    gap: 0.4rem;
+  }
+
+  .author {
+    display: inline-block;
+    background-color: var(--bg-2);
+    padding: 4px 12px;
+    border-radius: 30px;
+    font-size: 0.8rem;
+    color: var(--tx-2)
+  }
+</style>
