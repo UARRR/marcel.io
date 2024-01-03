@@ -1,5 +1,5 @@
 ---
-import BookListCell from "../../components/BookListCell.astro";
+import BookCard from "../../components/BookCard.astro";
 import Layout from "../../layouts/Layout.astro";
 import { getCollection } from "astro:content";
 
@@ -47,7 +47,7 @@ const years: string[] = Object.keys(groupedBooks).sort((a, b) => parseInt(b) - p
                 <h3>{year}</h3> <!-- Year headline -->
                 <div class="grid-container">
                     {groupedBooks[year].map((book) => (
-                        <BookListCell slug={book.slug} />
+                        <BookCard slug={book.slug} />
                     ))}
                 </div>
             </div>

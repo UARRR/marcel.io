@@ -10,8 +10,9 @@ const coverUrl = book?.data.olid ? `https://covers.openlibrary.org/b/olid/${book
 ---
 
 {book && 
-<a href={`/books/${book.slug}`} class="book">    
+<a href={`/books/${book.slug}`} class="book">
     {coverUrl && <img src={coverUrl} alt={`Cover of ${book.data.title}`} class="cover" />}
+   
     <StarRating rating={book.data.rating} />
 </a>
 }

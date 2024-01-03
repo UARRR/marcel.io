@@ -1,0 +1,50 @@
+---
+import { getCollection } from "astro:content";
+import StarRating from "./StarRating.astro";
+const books = await getCollection("books");
+---
+
+<h3>Library</h3>
+<div id="books">
+    {books.slice(0,5).map((book) => (
+        <a href={`books/${book.slug}`} class="book">
+            <div class="cover-and-title">
+                <img src={`https://covers.openlibrary.org/b/olid/${book.data.olid}-M.jpg`} alt={`Cover of ${book.data.title}`} class="cover" />
+                <span>{book.data.title}</span>
+            </div>
+            <StarRating rating={book.data.rating} />
+        </a>
+    ))}
+</div>
+
+<style>
+    #books {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+    }
+
+    .book {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 12px 0px;
+        border-bottom: 1px solid var(--bg-2);
+        text-decoration: none;
+    }
+
+    .cover-and-title {
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: start;
+        gap: 0.5rem;
+        border: 1px solid red;
+        flex-grow: 1;
+    }
+    
+    .cover {
+        max-width: 100%;
+        height: auto;
+    }
+</style>

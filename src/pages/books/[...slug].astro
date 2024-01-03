@@ -16,6 +16,8 @@ export async function getStaticPaths() {
 
 const { book } = Astro.props;
 const { Content } = await book.render();
+
+const coverUrl = book?.data.olid ? `https://covers.openlibrary.org/b/olid/${book.data.olid}-L.jpg` : '';
 ---
 
 <Layout title={book.data.title}>
@@ -28,6 +30,9 @@ const { Content } = await book.render();
           <span class="author">{author}</span>
         )}
       </div>
+
+      {coverUrl && <img src={coverUrl} alt={`Cover of ${book.data.title}`} class="cover" />}
+
 
       <StarRating rating={book.data.rating} />
     
