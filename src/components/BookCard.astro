@@ -5,12 +5,12 @@ const { slug } = Astro.props
 
 const book = await getEntry('books', slug);
 
-const coverUrl = book?.data.olid ? `https://covers.openlibrary.org/b/olid/${book.data.olid}-L.jpg` : '';
+const coverUrl = book?.data.olid ? `https://covers.openlibrary.org/b/olid/${book.data.olid}-M.jpg` : '';
 
 ---
 
 {book && 
-<a href={`/books/${book.slug}`} class="book">
+<a href={`/library/${book.slug}`} class="book">
     {coverUrl && <img src={coverUrl} alt={`Cover of ${book.data.title}`} class="cover" />}
    
     <StarRating rating={book.data.rating} />

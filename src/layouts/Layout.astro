@@ -130,7 +130,7 @@ const { title, showingShort = false } = Astro.props;
 		margin: auto;
 		display: flex;
 		flex-direction: column;
-		gap: 5rem;
+		gap: 4rem;
 	}
 
 	#titleAndContent {
@@ -140,11 +140,19 @@ const { title, showingShort = false } = Astro.props;
 	}
 
 	a {
-		text-decoration: underline;
-		text-decoration-color: var(--tx-3);
+		text-decoration: none;
 		color: var(--tx-2);
+		transition: transform 0.1s ease;
 	}
 
+	a:hover {
+		text-decoration: underline;
+		text-decoration-color: var(--tx-3);
+	}
+
+	a:active {
+		transform: translateY(1px);
+	}
 
 	hr {
 		display: block;
@@ -201,32 +209,20 @@ const { title, showingShort = false } = Astro.props;
 		color: var(--tx-3);
 	}
 
-	article ul li::before,
-	article ol li::before {
-		content: "";
-		width: 0.3rem;
-		display: inline-block;
-	}
-
-	
-
-
 	article ul li, 
 	article ol li {
-		margin-bottom: 0.2rem;
+		margin-bottom: 0.8rem;
 	}
 
 	article ul, 
 	article ol {
 		padding-left: 0;    /* Removes the default padding */
 		margin-left: 0;     /* Removes the default margin */
-		list-style-position: inside; /* Positions the bullets or numbers inside the content flow */
+		/* list-style-position: inside; */
+		margin-left: 2rem;
 		margin-bottom: 1.6rem;
 	}
-	
-	article li p {
-		display: inline-block;
-	}
+
 
 
 	article p + hr {
@@ -293,5 +289,22 @@ const { title, showingShort = false } = Astro.props;
 		border-radius: .2rem;
 	}
 	
+
+
+
+    .badge {
+        display: inline-block;
+        padding: 0.25rem 0.44rem;
+        font-size: 0.8rem;
+        font-weight: 700;
+        line-height: 1;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        border-radius: 10em;
+        color: var(--tx);
+        background-color: var(--ui-3);
+		height: auto;
+    }
 
 </style>
