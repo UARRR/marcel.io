@@ -1,9 +1,9 @@
 import rss from "@astrojs/rss";
 import { getCollection } from "astro:content";
 
-import sanitizeHtml from "sanitize-html";
-import MarkdownIt from "markdown-it";
-const parser = new MarkdownIt();
+// import sanitizeHtml from "sanitize-html";
+// import MarkdownIt from "markdown-it";
+// const parser = new MarkdownIt();
 
 export async function GET(context) {
   const books = await getCollection("books");
@@ -16,7 +16,7 @@ export async function GET(context) {
       title: book.data.title,
       pubDate: book.data.dateRead,
       link: `/library/${book.slug}/`,
-      content: sanitizeHtml(parser.render(book.body)),
+      // content: sanitizeHtml(parser.render(book.body)),
     })),
     customData: `<language>en-us</language>`,
     stylesheet: "rss.xsl",
