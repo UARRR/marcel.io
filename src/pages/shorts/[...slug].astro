@@ -1,8 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
-import RecentShortsList from '../../components/RecentShortsList.astro';
-import { Icon } from 'astro-icon/components';
 import ShortCard from '../../components/ShortCard.astro';
 
 export async function getStaticPaths() {
@@ -20,7 +18,7 @@ export async function getStaticPaths() {
 }
 
 const { short } = Astro.props;
-const { Content, headings } = await short.render();
+// const { Content, headings } = await short.render();
 
 
 ---
