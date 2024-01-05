@@ -6,17 +6,17 @@ import MarkdownIt from "markdown-it";
 const parser = new MarkdownIt();
 
 export async function GET(context) {
-  const shorts = await getCollection("shorts");
+  const books = await getCollection("books");
 
   return rss({
-    title: "Shorts / marcel.io",
-    description: "Hot takes, brainfarts and shower thoughts",
+    title: "Library / marcel.io",
+    description: "Opinions on books",
     site: context.site,
-    items: shorts.map((short) => ({
-      title: short.data.timestamp.toDateString(),
-      pubDate: short.data.timestamp,
-      link: `/blog/${short.slug}/`,
-      content: sanitizeHtml(parser.render(short.body)),
+    items: books.map((book) => ({
+      title: book.data.title,
+      pubDate: book.data.dateRead,
+      link: `/library/${book.slug}/`,
+      content: sanitizeHtml(parser.render(book.body)),
     })),
     customData: `<language>en-us</language>`,
     stylesheet: "rss.xsl",

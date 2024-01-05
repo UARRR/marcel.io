@@ -2,6 +2,8 @@
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import RecentShortsList from '../../components/RecentShortsList.astro';
+import { Icon } from 'astro-icon/components';
+import ShortCard from '../../components/ShortCard.astro';
 
 export async function getStaticPaths() {
   const shorts = await getCollection('shorts');
@@ -27,39 +29,45 @@ const { Content, headings } = await short.render();
   <div id="triangleAndShort">
     <div class="triangle" />
 
-    <div class="short">
-      <Content />
-      <span class="date">{short.data.timestamp.toDateString()}</span>
-      <!-- <TagsList tags={short.data.tags} /> -->
-    </div>
+    <ShortCard slug={short.slug} />
   </div>
   
-  <p>Welcome to my very own little short message service. You can subscribe to a feed that only contains these little blurbs, if you're so inclined.</p>
+  <!-- <p>Welcome to my very own little short message service. You can subscribe to a feed that only contains these little blurbs, if you're so inclined.</p>
 
-  <RecentShortsList currentShortID={short.id} />
+  <RecentShortsList currentShortID={short.id} /> -->
 </Layout>
 
 <style>
   .short {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
     background-color: var(--bg-2);
-    font-size: 1.5rem;
-    line-height: 1.8rem;
+    font-size: 1.2rem;
+    line-height: 1.5rem;
     font-weight: 400;
-    padding: 1rem 1.5rem;
+    padding: 1.5rem 1.5rem;
     border-radius: 0.8rem;
   }
 
   #triangleAndShort {
     display: flex;
     flex-direction: column;
-      margin-top: -4.4rem;
+    margin-top: -3.2rem;
 
   }
 
-  .short .date {
-    font-size: 0.8rem;
-    color: var(--tx-3)
-  }
+  .iconAndDate {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.2rem;
+        color: var(--tx-3)
+   }
+
+    .date {
+        font-size: 0.8rem;
+    }
 
   .triangle {
         width: 0; 

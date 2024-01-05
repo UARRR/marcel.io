@@ -242,4 +242,16 @@ const horizontalPadding = "10px";
         font-size: 0.8rem;
     }
 
+    @media screen and (max-width: 450px) {
+        .line {
+            display: none;
+        }
+
+        .cell {
+            flex-direction: column;
+            border-bottom: 1px solid var(--bg-2);
+            border-radius: 0px;
+        }
+    }
+
 </style>

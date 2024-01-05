@@ -1,8 +1,20 @@
 ---
 import Layout from "../layouts/Layout.astro";
 
+import { Image } from 'astro:assets';
+import picture from '../images/marcel_wichmann.webp';
+
 ---
 
 <Layout title="About">
-    <p>Nothing here yet</p>
+    <p><a href="https://www.youtube.com/watch?v=5PWqt2Wg-us">Yahaha, you found me!</a> I’m Marcel, a designer for digital products that recently started writing his own code. Building things fascinates me like nothing else, no matter the form. I forgot that for a couple of years and it made me feel worse., so now I’m back to building and sharing what I’m working on. Stay if you want to accompany me on this adventure.</p>
+
+    <Image src={picture} alt="Avatar" /> 
+
 </Layout>
+
+<style>
+    img {
+        border-radius: 16px;
+    }
+</style>
