@@ -1,7 +1,6 @@
 import { defineConfig } from "astro/config";
 
 import icon from "astro-icon";
-import vercelServerless from "@astrojs/vercel/serverless";
 
 // https://astro.build/config
 export default defineConfig({
@@ -17,6 +16,4 @@ export default defineConfig({
       wrap: true,
     },
   },
-  output: "server",
-  adapter: vercelServerless(),
 });
