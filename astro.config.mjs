@@ -16,4 +16,7 @@ export default defineConfig({
       wrap: true,
     },
   },
+  redirects: {
+    "/feed": "/feed.xml",
+  },
 });
