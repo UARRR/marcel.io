@@ -24,7 +24,7 @@ jobs:
           cat << EOF > $FULL_PATH
           ---
           title: "$POST_TITLE"
-          date: $POST_DATE
+          timestamp: $POST_DATE
           tags: [$POST_TAGS]
           ---
 
