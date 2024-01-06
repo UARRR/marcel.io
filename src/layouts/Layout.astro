@@ -17,6 +17,7 @@ const { title, showingShort = false } = Astro.props;
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>{title ? `${title} · Marcel` : "Marcel"}</title>
 	</head>
 	<body>
@@ -118,10 +119,12 @@ const { title, showingShort = false } = Astro.props;
 		color: var(--tx);
 		font-family: 'Nunito Sans', sans-serif;	
 		background: var(--bg);
-		margin: 100px 0px;
-		/* line-height: 1.2rem; */
 		font-size: 1.1rem;
 		padding: 0px 20px;
+	}
+
+	body {
+		margin: 100px 0px 100px 0px !important;
 	}
 
 	h1, h2, h3 {
