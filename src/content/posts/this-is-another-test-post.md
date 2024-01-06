@@ -1,6 +1,6 @@
 ---
 title: "This is another test post"
-date: 2024-01-06
+timestamp: 2024-01-06
 tags: ["Life","Technology"]
 ---
 
