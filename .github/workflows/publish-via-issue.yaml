@@ -14,7 +14,7 @@ jobs:
         run: |
           export POST_DATE=$(date +"%Y-%m-%d")
           export POST_TITLE="${{ github.event.issue.title }}"
-          export POST_TAGS=$(echo "${{ join(github.event.issue.labels.*.name, ', ') }}" | grep -o 'tag:[^,]*' | cut -d: -f2- | paste -sd " " - | sed 's/ /, /g')
+          export POST_TAGS=$(echo "${{ join(github.event.issue.labels.*.name, ' ') }}" | grep -o 'tag:[^ ]*' | sed 's/tag:\(.*\)/"\1"/')
           export FILE_TITLE=$(printf "$POST_TITLE" | tr -cs '[:alnum:]' '-' | tr 'A-Z' 'a-z' | sed 's/--/-/g' | sed 's/^-\|-$//g')
           export FILE_NAME="$FILE_TITLE.md"
           export FULL_PATH="src/content/posts/$FILE_NAME"
@@ -24,8 +24,8 @@ jobs:
           cat << EOF > $FULL_PATH
           ---
           title: "$POST_TITLE"
-          date: "$POST_DATE"
-          tags: "$POST_TAGS"
+          date: $POST_DATE
+          tags: [$POST_TAGS]
           ---
 
           EOF
