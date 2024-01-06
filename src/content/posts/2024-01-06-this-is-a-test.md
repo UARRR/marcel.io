@@ -1,10 +1,4 @@
 ---
-title: "This is a test"
-date: "2024-01-06"
-tags: ""
----
-
----
 title: "Hello there"
 timestamp: 2024-01-06
 language: "English"
