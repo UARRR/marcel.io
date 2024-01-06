@@ -9,7 +9,7 @@ jobs:
     env:
       POST_BODY: "${{ github.event.issue.body }}"
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4.1.1
       - name: Create commits
         run: |
           export POST_DATE=$(date +"%Y-%m-%d")
@@ -34,7 +34,6 @@ jobs:
 
           git add $FULL_PATH
           git commit -m "Publish $POST_TITLE"
-
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5.0.2
         with:
