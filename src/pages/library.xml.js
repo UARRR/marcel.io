@@ -28,11 +28,11 @@ export async function GET(context) {
         pubDate: new Date(book.data.dateRead),
         link: `/library/${book.slug}/`,
         content: sanitizeHtml(
-          parser.render(book.body || "") + `<br><br>Rating: ${starRating}`
+          parser.render(book.body || "") + `<br>Rating: ${starRating}`
         ),
       };
     }),
     customData: `<language>en-us</language>`,
-    stylesheet: "rss.xsl",
+    // stylesheet: "rss.xsl",
   });
 }

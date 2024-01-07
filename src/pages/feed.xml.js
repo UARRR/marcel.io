@@ -5,6 +5,13 @@ import sanitizeHtml from "sanitize-html";
 import MarkdownIt from "markdown-it";
 const parser = new MarkdownIt();
 
+// Function to generate star ratings
+function generateStarRating(rating) {
+  const filledStars = "★".repeat(rating);
+  const unfilledStars = "☆".repeat(5 - rating);
+  return filledStars + unfilledStars;
+}
+
 export async function GET(context) {
   const posts = await getCollection("posts");
   const shorts = await getCollection("shorts");
@@ -53,11 +60,18 @@ export async function GET(context) {
 
       const link = `${linkPrefix}${item.slug}/`;
 
+      // Append star rating for books
+      let content = sanitizeHtml(parser.render(item.body || ""));
+      if (item.collection === "books" && item.data.rating) {
+        const starRating = generateStarRating(item.data.rating);
+        content += `<br>Rating: ${starRating}`;
+      }
+
       return {
         title,
         pubDate,
         link,
-        content: sanitizeHtml(parser.render(item.body || "")),
+        content,
       };
     }),
     customData: `<language>en-us</language>`,
