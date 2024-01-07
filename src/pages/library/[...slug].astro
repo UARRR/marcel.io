@@ -2,6 +2,8 @@
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import StarRating from '../../components/StarRating.astro';
+import AllTimeFavBadge from '../../components/AllTimeFavBadge.astro';
+import { Image } from 'astro:assets';
 
 export async function getStaticPaths() {
   const books = await getCollection('books');
@@ -17,42 +19,95 @@ export async function getStaticPaths() {
 const { book } = Astro.props;
 const { Content } = await book.render();
 
-const coverUrl = book?.data.olid ? `https://covers.openlibrary.org/b/olid/${book.data.olid}-L.jpg` : '';
+// const coverUrl = book?.data.olid ? `https://covers.openlibrary.org/b/olid/${book.data.olid}-M.jpg` : '';
+const coverUrl = book?.data.isbn ? `https://covers.openlibrary.org/b/isbn/${book.data.isbn}-L.jpg` : '';
+
 ---
 
 <Layout title={book.data.title}>
 
-  <div>
-    { book.data.subtitle && <p>{book.data.subtitle}</p> }
+  <div id="content">
 
-      <div id="authors">
-        {book.data.author.map((author: string) =>
-          <span class="author">{author}</span>
-        )}
-      </div>
+    { book.data.subtitle && <span id="subtitle">{book.data.subtitle}</span> }
 
-      {coverUrl && <img src={coverUrl} alt={`Cover of ${book.data.title}`} class="cover" />}
+    { book.data.allTimeFav && <AllTimeFavBadge /> }
+    { coverUrl &&  <Image src={coverUrl}  alt={`Cover of ${book.data.title}`} class="cover" width="200" height="50" /> }
 
+      <ul id="metadata">
+        <li class="cell">
+          <span>Author</span>
+          <div id="authors">
+            {book.data.author.map((author: string) =>
+              <span class="author">{author}</span>
+            )}
+          </div>
+        </li>
+        <div class="cell">
+          <span>Rating</span>
+          <StarRating rating={book.data.rating} allTimeFav={book.data.allTimeFav} />
+        </div>
+      </ul>
 
-      <StarRating rating={book.data.rating} />
-    
+     
      <Content />
   </div>
 </Layout>
 
 <style>
-  #authors {
+
+  #content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  #subtitle {
+    font-size: 1.2rem;
+    color: var(--tx-3);
+    margin-top: -1.5rem;
+  }
+
+  #metadata {
+    display: flex;
+    flex-direction: column;
+    gap: 0rem;
+    background-color: var(--bg-2);
+    padding: 0.5rem 1rem;
+    border-radius: 16px;
+  }
+
+  #metadata > .cell:last-child {
+    /* border-top: 1px solid var(--bg-3); */
+    border-bottom: none;
+}
+
+  .cell {
     display: flex;
     flex-direction: row;
     gap: 0.4rem;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--bg-3);
+    padding: 8px 0px;
+  }
+
+  #authors {
+    display: flex;
+    flex-direction: row;
+    gap: 0.2rem;
   }
 
   .author {
     display: inline-block;
-    background-color: var(--bg-2);
+    background-color: var(--bg-3);
     padding: 4px 12px;
     border-radius: 30px;
     font-size: 0.8rem;
-    color: var(--tx-2)
+    color: var(--tx)
   }
+
+  .cover {
+    border-radius: 16px;
+  }
+
+  
 </style>

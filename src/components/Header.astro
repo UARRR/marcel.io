@@ -25,7 +25,7 @@ const currentPath = pathname.slice(1);
         <nav>
             <a href="/about" class={currentPath === "about" ? "active" : "inactive"}>About</a>
             <a href="/library" class={currentPath === "library" ? "active" : "inactive"}>Library <span class="badge">{books.length}</span></a>
-            <a href="/now" class={currentPath === "now" ? "active" : "inactive"}>Now</a>
+            <!-- <a href="/now" class={currentPath === "now" ? "active" : "inactive"}>Now</a> -->
         </nav>
     </div>
     
@@ -64,6 +64,7 @@ const currentPath = pathname.slice(1);
         gap: 0.5rem;
         align-content: start;
         align-items: start;
+        /* align-content: stretch; */
     }
 
     nav a {
@@ -71,8 +72,9 @@ const currentPath = pathname.slice(1);
         border-radius: 40px;
         background-color: transparent;
         padding: 10px 16px;
-        line-height: 1;
+        /* line-height: 1; */
         text-decoration: none;
+        align-self: stretch;
     }
 
     nav a:hover {

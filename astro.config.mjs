@@ -19,4 +19,7 @@ export default defineConfig({
   redirects: {
     "/feed": "/feed.xml",
   },
+  image: {
+    domains: ["covers.openlibrary.org"],
+  },
 });

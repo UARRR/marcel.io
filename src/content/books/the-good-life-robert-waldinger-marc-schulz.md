@@ -7,4 +7,5 @@ genre: "Psychology"
 dateRead: 2023-09-13
 allTimeFav: false
 olid: "OL26772980W"
+isbn: "9781982166694"
 ---

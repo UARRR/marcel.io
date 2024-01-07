@@ -6,4 +6,5 @@ genre: "Memoir"
 dateRead: 2023-12-20
 allTimeFav: false
 olid: "OL2625422W"
+isbn: "9780307269478"
 ---

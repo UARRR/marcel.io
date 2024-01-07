@@ -1,6 +1,6 @@
 ---
 timestamp: 2023-12-28
-tags: ["krankheit", "körper"]
+tags: ["sickness", "body"]
 ---
 
-Ich war das erste Mal seit sieben [Jahren](https://example.com) krank und kann mit völliger Überzeugung verkünden, dass es keinen Spaß macht. Es fühlte sich an, als hätte ich 80 % meiner mentalen Fähigkeiten verloren.
+I was sick for the first time in seven years and can say with complete conviction that it is no fun. It felt like I had lost 80% of my mental abilities.

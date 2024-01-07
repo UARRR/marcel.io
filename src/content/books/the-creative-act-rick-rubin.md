@@ -7,4 +7,5 @@ genre: "Philosophy"
 dateRead: 2023-09-05
 allTimeFav: true
 olid: "OL38208363M"
+isbn: "9780593652886"
 ---

@@ -1,20 +1,26 @@
 ---
 interface Props {
-	rating: number
+	rating: number,
+    allTimeFav: boolean,
 }
 
-const { rating } = Astro.props;
+const { rating, allTimeFav } = Astro.props;
+
 ---
 
 <div class="star-rating">
     {Array.from({ length: 5 }, (_, i) => i + 1).map((num) => (
-      <span class={num <= rating ? 'filled' : 'notFilled'}>★</span>
+      <span class={`${num <= rating ? 'filled' : 'notFilled'}${allTimeFav ? ' fav' : ''}`}>★</span>
     ))}
 </div>
 
 <style>
     .filled {
-        color: gold;
+        color: var(--tx); /* Gray color for filled but not fav */
+    }
+
+    .filled.fav {
+        color: gold; 
     }
 
     .notFilled {

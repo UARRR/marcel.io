@@ -1,14 +1,31 @@
 ---
+import ShortCard from "../../components/ShortCard.astro";
 import Layout from "../../layouts/Layout.astro";
 import { getCollection } from "astro:content";
 
 const allShorts = await getCollection("shorts");
+
+allShorts.sort((a, b) => b.data.timestamp - a.data.timestamp);
+
 ---
 
-<Layout title="All Shorts">
-    <div>
+<Layout title="Shorts">
+    <p>Thoughts that aren't enough for full posts but still needed an outlet.</p>
+    <div id="shorts">
         {allShorts.map((short) => 
-            <p><a href={`/shorts/${short.slug}`}>{short.body}</a></p>
+            <ShortCard slug={short.slug} />
         )}
     </div>
 </Layout>
+
+<style>
+    #shorts {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    p {
+        color: var(--tx-2)
+    }
+</style>

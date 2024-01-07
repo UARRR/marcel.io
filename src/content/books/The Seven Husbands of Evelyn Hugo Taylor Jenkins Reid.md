@@ -6,4 +6,5 @@ genre: "Historical Fiction"
 dateRead: 2023-10-15
 allTimeFav: true
 olid: "OL35578972M"
+isbn: "9781398515697"
 ---

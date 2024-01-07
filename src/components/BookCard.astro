@@ -7,13 +7,14 @@ const book = await getEntry('books', slug);
 
 const coverUrl = book?.data.olid ? `https://covers.openlibrary.org/b/olid/${book.data.olid}-M.jpg` : '';
 
+console.log(book?.data.allTimeFav)
 ---
 
 {book && 
-<a href={`/library/${book.slug}`} class="book">
+<a href={`/library/${book.slug}`} class={`book ${book.data.allTimeFav ? "fav" : ""}`}>
     {coverUrl && <img src={coverUrl} alt={`Cover of ${book.data.title}`} class="cover" />}
    
-    <StarRating rating={book.data.rating} />
+    <StarRating rating={book.data.rating} allTimeFav={book.data.allTimeFav} />
 </a>
 }
 
@@ -46,4 +47,5 @@ const coverUrl = book?.data.olid ? `https://covers.openlibrary.org/b/olid/${book
         box-shadow: var(--shadow-elevation-low);
         transition: transform 0.1s ease-in-out;
     }
+    
 </style>

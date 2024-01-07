@@ -7,4 +7,5 @@ genre: "Psychology"
 dateRead: 2023-06-11
 allTimeFav: false
 olid: "OL24735334W"
+isbn: "9781401964368"
 ---

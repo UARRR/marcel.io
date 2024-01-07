@@ -9,6 +9,7 @@ type BookType = {
         dateRead: Date;
         rating: number;
         author: string[];
+        allTimeFav: boolean,
 
         // ... other book properties
     };
@@ -67,13 +68,13 @@ const years: string[] = Object.keys(groupedBooks).sort((a, b) => parseInt(b) - p
                 <div class="books-of-year">
                     {groupedBooks[year].map((book) => (
                         // <BookCard slug={book.slug} />
-                        <a href={`/library/${book.slug}`} class="book">
+                        <a href={`/library/${book.slug}`} class={`book ${book.data.allTimeFav ? "fav" : ""}`}>
                             <div class="title-and-author">
                                 <span>{book.data.title}</span>
                                 {book.data.title.length < 30 && <span class="author">{book.data.author[0]}</span>}
                             </div>
                             <div class="rating-wrapper">
-                                <StarRating rating={book.data.rating} />
+                                <StarRating rating={book.data.rating} allTimeFav={book.data.allTimeFav} />
                             </div>
                         </a>
                     ))}
@@ -157,7 +158,15 @@ const years: string[] = Object.keys(groupedBooks).sort((a, b) => parseInt(b) - p
         padding-left: 0rem;
         border-left: 0px solid transparent;
         padding-right: 1rem;
+        padding-left: 0.5rem;
     }
+
+    .fav {
+        background: linear-gradient(to right, rgba(255, 238, 0, 0.2), transparent 60%);
+        border-left: 2px solid gold;
+    }
+
+    
 
     .book span {
         color: var(--tx)
@@ -165,8 +174,12 @@ const years: string[] = Object.keys(groupedBooks).sort((a, b) => parseInt(b) - p
 
     .book:hover {
         background-color: var(--bg-2);
-        border-left: 8px solid var(--ui-2);
+        border-left: 8px solid var(--bg-3);
         padding-left: 1rem;
+    }
+
+    .fav:hover {
+        border-left: 8px solid gold;
     }
 
     .rating-wrapper {
