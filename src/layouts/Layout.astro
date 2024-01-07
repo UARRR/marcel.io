@@ -13,7 +13,7 @@ const { title, showingShort = false } = Astro.props;
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
+		<meta name="description" content="Design, code & some of the things in between" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -331,4 +331,17 @@ const { title, showingShort = false } = Astro.props;
 		height: auto;
     }
 
+
+	highlight {
+		background-color: rgb(255, 250, 155);
+	}
+
+
+	@media (prefers-color-scheme: dark) {
+		highlight {
+		background-color: rgb(94, 77, 0);
+	}
+
+	}
+	
 </style>

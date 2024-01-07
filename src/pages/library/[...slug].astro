@@ -28,28 +28,27 @@ const coverUrl = book?.data.isbn ? `https://covers.openlibrary.org/b/isbn/${book
 
   <div id="content">
 
-    { book.data.subtitle && <span id="subtitle">{book.data.subtitle}</span> }
-
-    { book.data.allTimeFav && <AllTimeFavBadge /> }
-    { coverUrl &&  <Image src={coverUrl}  alt={`Cover of ${book.data.title}`} class="cover" width="200" height="50" /> }
-
-      <ul id="metadata">
-        <li class="cell">
-          <span>Author</span>
-          <div id="authors">
-            {book.data.author.map((author: string) =>
-              <span class="author">{author}</span>
-            )}
+    <article>
+      { book.data.subtitle && <span id="subtitle">{book.data.subtitle}</span> }
+      { book.data.allTimeFav && <AllTimeFavBadge /> }
+      { coverUrl &&  <Image src={coverUrl}  alt={`Cover of ${book.data.title}`} class="cover" width="200" height="50" /> }
+        <ul id="metadata">
+          <li class="cell">
+            <span>Author</span>
+            <div id="authors">
+              {book.data.author.map((author: string) =>
+                <span class="author">{author}</span>
+              )}
+            </div>
+          </li>
+          <div class="cell">
+            <span>Rating</span>
+            <StarRating rating={book.data.rating} allTimeFav={book.data.allTimeFav} />
           </div>
-        </li>
-        <div class="cell">
-          <span>Rating</span>
-          <StarRating rating={book.data.rating} allTimeFav={book.data.allTimeFav} />
-        </div>
-      </ul>
-
-     
-     <Content />
+        </ul>
+      
+       <Content />
+    </article>
   </div>
 </Layout>
 
@@ -68,12 +67,17 @@ const coverUrl = book?.data.isbn ? `https://covers.openlibrary.org/b/isbn/${book
   }
 
   #metadata {
+    margin-left: 0px;
     display: flex;
     flex-direction: column;
     gap: 0rem;
     background-color: var(--bg-2);
     padding: 0.5rem 1rem;
     border-radius: 16px;
+  }
+
+  #metadata li {
+    margin-bottom: 0px;
   }
 
   #metadata > .cell:last-child {
@@ -107,6 +111,7 @@ const coverUrl = book?.data.isbn ? `https://covers.openlibrary.org/b/isbn/${book
 
   .cover {
     border-radius: 16px;
+    margin-bottom: 1rem;
   }
 
   
