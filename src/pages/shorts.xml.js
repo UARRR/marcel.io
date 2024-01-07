@@ -1,9 +1,9 @@
 import rss from "@astrojs/rss";
 import { getCollection } from "astro:content";
 
-// import sanitizeHtml from "sanitize-html";
-// import MarkdownIt from "markdown-it";
-// const parser = new MarkdownIt();
+import sanitizeHtml from "sanitize-html";
+import MarkdownIt from "markdown-it";
+const parser = new MarkdownIt();
 
 export async function GET(context) {
   const shorts = await getCollection("shorts");
@@ -15,8 +15,9 @@ export async function GET(context) {
     items: shorts.map((short) => ({
       title: short.data.timestamp.toDateString(),
       pubDate: short.data.timestamp,
-      link: `/blog/${short.slug}/`,
-      // content: sanitizeHtml(parser.render(short.body)),
+      link: `/shorts/${short.slug}/`,
+      content: sanitizeHtml(parser.render(short.body)),
+      ...short.data,
     })),
     customData: `<language>en-us</language>`,
     stylesheet: "rss.xsl",
