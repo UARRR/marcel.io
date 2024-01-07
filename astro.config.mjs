@@ -24,7 +24,7 @@ export default defineConfig({
   },
   build: {
     rollupOptions: {
-      external: ["markdown-it"],
+      external: ["markdown-it", "sanitize-html"],
     },
   },
 });
