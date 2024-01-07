@@ -14,10 +14,9 @@ export async function GET(context) {
     site: context.site,
     items: books.map((book) => ({
       title: book.data.title,
-      pubDate: book.data.dateRead,
+      pubDate: new Date(book.data.dateRead),
       link: `/library/${book.slug}/`,
-      content: sanitizeHtml(parser.render(book.body)),
-      ...book.data,
+      content: sanitizeHtml(parser.render(book.body || "")),
     })),
     customData: `<language>en-us</language>`,
     stylesheet: "rss.xsl",
