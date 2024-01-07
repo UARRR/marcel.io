@@ -24,7 +24,9 @@ const { title, showingShort = false } = Astro.props;
 		<link rel="manifest" href="/site.webmanifest">
 		<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
 		<meta name="msapplication-TileColor" content="#da532c">
-		<meta name="theme-color" content="transparent">
+
+		<meta name="theme-color" content="rgb(255, 252, 240)" media="(prefers-color-scheme: light)">
+	   <meta name="theme-color" content="rgb(16, 15, 15)" media="(prefers-color-scheme: dark)">
 
 		<script defer data-domain="marcel.io" src="https://stats.marcel.io/js/plausible.js"></script>
 
