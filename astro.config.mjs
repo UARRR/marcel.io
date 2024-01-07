@@ -22,4 +22,9 @@ export default defineConfig({
   image: {
     domains: ["covers.openlibrary.org"],
   },
+  build: {
+    rollupOptions: {
+      external: ["markdown-it"],
+    },
+  },
 });
