@@ -75,6 +75,6 @@ export async function GET(context) {
       };
     }),
     customData: `<language>en-us</language>`,
-    stylesheet: "rss.xsl",
+    // stylesheet: "rss.xsl",
   });
 }

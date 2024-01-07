@@ -20,6 +20,6 @@ export async function GET(context) {
       ...post.data,
     })),
     customData: `<language>en-us</language>`,
-    stylesheet: "rss.xsl",
+    // stylesheet: "rss.xsl",
   });
 }
