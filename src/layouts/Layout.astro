@@ -4,9 +4,10 @@ import Header from '../components/Header.astro';
 interface Props {
 	title?: string;
 	showingShort?: boolean
+	frontmatter?: any,
 }
 
-const { title, showingShort = false } = Astro.props;
+const { title, frontmatter, showingShort = false } = Astro.props;
 ---
 
 <!doctype html>
@@ -29,16 +30,17 @@ const { title, showingShort = false } = Astro.props;
 
 		<script defer data-domain="marcel.io" src="https://stats.marcel.io/js/plausible.js"></script>
 
-		<title>{title ? `${title} · Marcel` : "Marcel"}</title>
+		<title>
+			{title ? `${title} · Marcel` : (frontmatter?.title ? `${frontmatter.title} · Marcel` : "Marcel")}
+		</title>
 		
 	</head>
 	<body>
 		
-
 		<main>
 			<Header showingShort={showingShort} />
 			<div id="titleAndContent">
-				{title && <h1>{title}</h1> }
+				{title ? <h1>{title}</h1> : (frontmatter?.title && <h1>{frontmatter.title}</h1>)}
 				<slot />
 			</div>
 			<Footer />
@@ -48,14 +50,14 @@ const { title, showingShort = false } = Astro.props;
 
 
 <style is:global>
-	@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,400;6..12,700&family=Nunito:ital,wght@0,400;0,700;1,400&display=swap');
+	@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,500;0,6..12,600;0,6..12,700;1,6..12,400&family=Nunito:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
 
 	
 
 	:root {
 		--bg: rgb(255, 252, 240);
 		--bg-2: rgb(247, 243, 227);
-		--bg-3: rgb(228, 224, 206);
+		--bg-3: rgb(232, 228, 210);
 		--ui: rgb(230, 228, 217);
 		--ui-2: rgb(218, 216, 206);
 		--ui-3: rgb(206, 205, 195);
@@ -65,9 +67,11 @@ const { title, showingShort = false } = Astro.props;
 
 		--shadow-color: 45deg 30% 74%;
 		--shadow-elevation-low:
-			0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.2),
-			0.4px 0.7px 0.9px -1.2px hsl(var(--shadow-color) / 0.2),
-			0.8px 1.6px 2px -2.5px hsl(var(--shadow-color) / 0.2);
+			0.5px 1px 1.1px hsl(var(--shadow-color) / 0.2),
+			0.6px 2px 1.3px -1.2px hsl(var(--shadow-color) / 0.2),
+			1.0px 4px 2.6px -2.5px hsl(var(--shadow-color) / 0.2);
+
+
 		--shadow-elevation-medium:
 			0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.21),
 			0.7px 1.4px 1.8px -0.8px hsl(var(--shadow-color) / 0.21),
@@ -99,9 +103,9 @@ const { title, showingShort = false } = Astro.props;
 
 		--shadow-color: 0deg 0% 1%;
 		--shadow-elevation-low:
-			0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.2),
-			0.4px 0.7px 0.9px -1.2px hsl(var(--shadow-color) / 0.2),
-			0.8px 1.6px 2px -2.5px hsl(var(--shadow-color) / 0.2);
+			0.5px 0.7px 1.1px hsl(var(--shadow-color) / 0.2),
+			0.6px 0.9px 1.3px -1.2px hsl(var(--shadow-color) / 0.2),
+			1.0px 1.8px 2.6px -2.5px hsl(var(--shadow-color) / 0.2);
 		--shadow-elevation-medium:
 			0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.21),
 			0.7px 1.4px 1.8px -0.8px hsl(var(--shadow-color) / 0.21),
@@ -335,11 +339,20 @@ const { title, showingShort = false } = Astro.props;
 		background-color: rgb(255, 250, 155);
 	}
 
+	mark {
+		background-color: rgb(255, 250, 155);
+	}
+
 
 	@media (prefers-color-scheme: dark) {
 		highlight {
-		background-color: rgb(94, 77, 0);
-	}
+			background-color: rgb(94, 77, 0);
+		}
+
+		mark {
+			background-color: rgb(94, 77, 0);
+			color: var(--tx)
+		}
 
 	}
 	

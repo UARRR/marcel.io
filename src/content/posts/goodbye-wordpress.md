@@ -11,6 +11,8 @@ This is the first time in forever that I'm blogging on something other than Word
 
 It feels great.
 
+
+
 There's a slight chance that I'll grow tired of using a [static site generator](https://astro.build/) as my blog framework, sure. But in the context of my ongoing effort to get better at coding, I feel like gifting myself this playground, with all its possibilities, might make the few downsides worth it.
 
 Look at this cool [library](https://marcel.io/library) of all the books I've read in 2023! I wouldn't even know where to start with something like that in Wordpress.

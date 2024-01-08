@@ -16,7 +16,6 @@ const books = await getCollection("books");
 const pathname = new URL(Astro.request.url).pathname;
 const currentPath = pathname.slice(1);
 
-
 ---
 
 <div id="headerAndShort">
@@ -26,7 +25,6 @@ const currentPath = pathname.slice(1);
         <nav>
             <a href="/about" class={currentPath === "about" ? "active" : "inactive"}>About</a>
             <a href="/library" class={currentPath === "library" ? "active" : "inactive"}>Library <span class="badge">{books.length}</span></a>
-            <!-- <a href="/now" class={currentPath === "now" ? "active" : "inactive"}>Now</a> -->
         </nav>
     </div>
     

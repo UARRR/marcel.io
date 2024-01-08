@@ -4,6 +4,8 @@ import Layout from '../../layouts/Layout.astro';
 import StarRating from '../../components/StarRating.astro';
 import AllTimeFavBadge from '../../components/AllTimeFavBadge.astro';
 import { Image } from 'astro:assets';
+import AuthorList from '../../components/AuthorList.astro';
+import GenreBadge from '../../components/GenreBadge.astro';
 
 export async function getStaticPaths() {
   const books = await getCollection('books');
@@ -35,16 +37,16 @@ const coverUrl = book?.data.isbn ? `https://covers.openlibrary.org/b/isbn/${book
         <ul id="metadata">
           <li class="cell">
             <span>Author</span>
-            <div id="authors">
-              {book.data.author.map((author: string) =>
-                <span class="author">{author}</span>
-              )}
-            </div>
+            <AuthorList authors={book.data.author} />
           </li>
-          <div class="cell">
+          <li class="cell">
+            <span>Genre</span>
+            <GenreBadge genre={book.data.genre}>
+          </li>
+          <li class="cell">
             <span>Rating</span>
             <StarRating rating={book.data.rating} allTimeFav={book.data.allTimeFav} />
-          </div>
+          </li>
         </ul>
       
        <Content />
@@ -94,20 +96,7 @@ const coverUrl = book?.data.isbn ? `https://covers.openlibrary.org/b/isbn/${book
     padding: 8px 0px;
   }
 
-  #authors {
-    display: flex;
-    flex-direction: row;
-    gap: 0.2rem;
-  }
-
-  .author {
-    display: inline-block;
-    background-color: var(--bg-3);
-    padding: 4px 12px;
-    border-radius: 30px;
-    font-size: 0.8rem;
-    color: var(--tx)
-  }
+  
 
   .cover {
     border-radius: 16px;

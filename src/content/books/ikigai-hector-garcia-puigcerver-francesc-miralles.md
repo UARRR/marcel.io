@@ -9,5 +9,3 @@ allTimeFav: false
 olid: "OL26927371M"
 isbn: "9780143130727"
 ---
-
-

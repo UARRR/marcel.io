@@ -1,0 +1,35 @@
+---
+interface Props {
+    genre: string,
+}
+
+const { genre } = Astro.props;
+
+// Combined mapping for both background and foreground colors
+const genreStyles: Record<string, { backgroundColor: string, foregroundColor: string }> = {
+    'Science Fiction': { backgroundColor: '#E4EDF8', foregroundColor: '#588EF1' },
+    'Philosophy': { backgroundColor: '#F9F6D4', foregroundColor: '#CE9745' },
+    'Fantasy': { backgroundColor: '#F1E6FD', foregroundColor: '#AE6BF3' },
+    'Business': { backgroundColor: '#E3F5C7', foregroundColor: '#68A135' },
+    'Psychology': { backgroundColor: '#FBE5F1', foregroundColor: '#EB62A0' },
+    'Nature': { backgroundColor: '#DAFBE6', foregroundColor: '#4BCA78' },
+    'Productivity': { backgroundColor: '#FBECDB', foregroundColor: '#F76B29' },
+};
+
+const defaultStyle = { backgroundColor: 'var(--bg-3)', foregroundColor: 'var(--tx)' };
+
+const { backgroundColor, foregroundColor } = genreStyles[genre] || defaultStyle;
+
+---
+
+<span style={{ backgroundColor, color: foregroundColor }}>{genre}</span>
+
+<style>
+    span {
+        display: inline-block;
+        max-width: fit-content;
+        padding: 4px 12px;
+        border-radius: 30px;
+        font-size: 0.8rem;
+    }
+</style>
