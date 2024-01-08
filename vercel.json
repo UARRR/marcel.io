@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/feed",
+      "destination": "/feed.xml",
+      "statusCode": 301
+    }
+  ]
+}
