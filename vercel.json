@@ -4,6 +4,11 @@
       "source": "/feed",
       "destination": "/feed.xml",
       "statusCode": 301
+    },
+    {
+      "source": "/feed/",
+      "destination": "/feed.xml",
+      "statusCode": 301
     }
   ]
 }
