@@ -13,8 +13,8 @@ const { showingShort } = Astro.props
 
 const books = await getCollection("books");
 
-const pathname = new URL(Astro.request.url).pathname;
-const currentPath = pathname.slice(1);
+// Remove leading and trailing slashes from pathname to get a consistent comparison across environments
+const currentPath = Astro.url.pathname.replace(/^\/|\/$/g, "");
 
 ---
 
