@@ -2,10 +2,12 @@ import { defineConfig } from "astro/config";
 import icon from "astro-icon";
 import mdx from "@astrojs/mdx";
 
+import preact from "@astrojs/preact";
+
 // https://astro.build/config
 export default defineConfig({
   site: "https://marcel.io",
-  integrations: [icon(), mdx()],
+  integrations: [icon(), mdx(), preact()],
   markdown: {
     shikiConfig: {
       // Choose from Shiki's built-in themes (or add your own)
