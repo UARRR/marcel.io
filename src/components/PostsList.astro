@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import TiptopAd from './TiptopAd.astro';
 // const allPosts = await getCollection("posts");
 
 // Assuming the structure of your post, adjust as necessary
@@ -64,40 +65,48 @@ function groupPostsByYear(posts: Post[]): GroupedPosts {
 const postsGroupedByYear = groupPostsByYear(allPosts);
 
 const horizontalPadding = "10px";
+
+const currentYear = new Date().getFullYear().toString();
+const sortedYears = Object.keys(postsGroupedByYear).sort().reverse();
+const lastYear = sortedYears[sortedYears.length - 1];
 ---
 
 <section id="writing">
     <!-- <h2>Writing</h2> -->
     <div class="yearsList">
         {Object.keys(postsGroupedByYear).sort().reverse().map(year => (
-            <section class="year">
-                <h3 class="yearTitle">{year}</h3>
-                {Object.keys(postsGroupedByYear[year]).map(month => (
-                    <div class="month">
-    
-                        <ol class="postList">
-                            {postsGroupedByYear[year][month].map(post => (
-                                <a href={`/posts/${post.slug}`} >
-                            <div class="cell">
-                                <span class="title">{post.data.title}</span>
-                                <div class="line" />
-    
-                                <!--   
-                                <div class="tags">
-                                    {post.data.tags.map((tag: string) =>
-                                        <span class="tag">{tag}</span>
-                                    )}
-                                </div> 
-                                -->
-                                <span class="date">{post.data.timestamp.toDateString().split(' ').slice(1).join(' ')}</span>
-                            </div>
-    
-                        </a>
-                            ))}
-                        </ol>
-                    </div>
-                ))}
-            </section>
+            <div class="year-and-tiptop">
+                <section class="year">
+                    <h3 class="yearTitle">{year}</h3>
+                    {Object.keys(postsGroupedByYear[year]).map(month => (
+                        <div class="month">
+                            <ol class="postList">
+                                {postsGroupedByYear[year][month].map(post => (
+                                    <a href={`/posts/${post.slug}`} >
+                                <div class="cell">
+                                    <span class="title">{post.data.title}</span>
+                                    <div class="line" />
+                                    <!--
+                                    <div class="tags">
+                                        {post.data.tags.map((tag: string) =>
+                                            <span class="tag">{tag}</span>
+                                        )}
+                                    </div>
+                                    -->
+                                    <span class="date">{post.data.timestamp.toDateString().split(' ').slice(1).join(' ')}</span>
+                                </div>
+                            </a>
+                                ))}
+                            </ol>
+                        </div>
+                    ))}
+                </section>
+
+                {year === currentYear && (
+                    <TiptopAd />
+                )}
+            </div>
+            
         ))}
     </div>
 </section>
