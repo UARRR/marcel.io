@@ -1,4 +1,5 @@
 import { useState, useEffect } from "preact/hooks";
+import styles from "../css/AppAd.module.css";
 
 type App = {
   title: string;
@@ -51,23 +52,23 @@ export default function AppAd() {
   if (!randomApp) return null;
 
   return (
-    <a href={randomApp.url}>
-      <div id="container">
+    <a href={randomApp.url} className={styles.link}>
+      <div id={styles.container}>
         <img
           src={randomApp.image}
           alt={`${randomApp.title} Icon`}
           width={60}
           height={60}
-          id="icon"
+          id={styles.icon}
         />
 
-        <div id="title-and-description">
+        <div id={styles.titleAndDescription}>
           <h3>{randomApp.title}</h3>
           <p>{randomApp.description}</p>
         </div>
 
         <img
-          src="src/images/app-store.svg"
+          src="/images/app-store.svg"
           alt={`Download ${randomApp.title}`}
           width={160}
           height={60}
