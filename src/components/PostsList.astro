@@ -1,6 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
-import TiptopAd from './TiptopAd.astro';
+import TiptopAd from './TiptopAd.jsx';
 // const allPosts = await getCollection("posts");
 
 // Assuming the structure of your post, adjust as necessary
@@ -103,9 +103,7 @@ const lastYear = sortedYears[sortedYears.length - 1];
                 </section>
 
                 {year === currentYear && (
-                    <div>
-                        <TiptopAd client:load />
-                    </div>
+                    <TiptopAd client:load />
                 )}
             </div>
             
@@ -269,4 +267,4 @@ const lastYear = sortedYears[sortedYears.length - 1];
         }
     }
 
-</style>
+</style>./TiptopAd.jsx
