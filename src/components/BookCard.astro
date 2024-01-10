@@ -37,7 +37,8 @@ console.log(book?.data.allTimeFav)
 
     a:hover {
         box-shadow: var(--shadow-elevation-medium);
-        color: var(--tx)
+        color: var(--tx);
+        filter: brightness(98%);
     }
 
     .book {
@@ -89,6 +90,12 @@ console.log(book?.data.allTimeFav)
 
         .open-icon {
             display: none;
+        }
+    }
+
+    @media (prefers-color-scheme: dark) {
+        .book:hover {
+            filter: brightness(120%) !important;
         }
     }
     
