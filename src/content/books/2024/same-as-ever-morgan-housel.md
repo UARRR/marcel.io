@@ -1,7 +1,8 @@
 ---
 title: "Same as Ever"
-author: 
-    - Morgan Housel
+subtitle: A Guide to What Never Changes
+author:
+  - Morgan Housel
 rating: 4
 genre: Psychology
 dateRead: 2024-01-10
