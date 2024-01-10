@@ -1,0 +1,140 @@
+---
+import { Image } from 'astro:assets';
+import henloIcon from '../images/henlo-icon.png';
+import peatIcon from '../images/peat-icon.png';
+import stoinsIcon from '../images/stoins-icon.png';
+import appStoreIcon from '../images/app-store.svg';
+
+const apps = [
+    {
+        title: "Henlo",
+        description: "Stay in touch with those you care about", 
+        url: "https://apps.apple.com/app/henlo/id1643404410",
+        image: "../../images/henlo-icon.png",
+        iconName: "henloIcon"
+    }, 
+    {
+        title: "Peat",
+        description: "Peat is a habit tracking app that keeps you motivated", 
+        url: "https://apps.apple.com/us/app/habit-tracker-peat/id6449402568",
+        image: "../../images/peat-icon.png",
+        iconName: "peatIcon"
+    }, 
+    {
+        title: "Stoins",
+        description: "The only step counter that motivates you to walk more", 
+        url: "https://apps.apple.com/us/app/stoins/id6443662308",
+        image: "../../images/stoins-icon.png",
+        iconName: "stoinsIcon"
+    }
+]
+
+// Function to select a random app
+function getRandomApp() {
+    const randomIndex = Math.floor(Math.random() * apps.length);
+    return apps[randomIndex];
+}
+
+const randomApp = getRandomApp();
+
+// Function to get the corresponding image based on the app title
+function getAppImage(title: string) {
+    switch (title) {
+        case 'Henlo':
+            return henloIcon;
+        case 'Peat':
+            return peatIcon;
+        case 'Stoins':
+            return stoinsIcon;
+        // Handle the default case appropriately
+        default:
+            return undefined;
+    }
+}
+
+// Assuming getAppImage returns ImageMetadata or undefined
+const appImage: ImageMetadata | undefined = getAppImage(randomApp.title);
+
+
+
+---
+<a href={randomApp.url}>
+    <div id="container">
+        {appImage && <Image src={appImage} alt={`${randomApp.title} Icon`} width={60} height={60} id="icon" />}
+
+        <div id="title-and-description">
+            <h3>{randomApp.title}</h3>
+            <p>{randomApp.description}</p>
+        </div>
+
+        <Image src={appStoreIcon} alt={`Download ${randomApp.title}`} width={160} height={60} id="appStore" />
+    </div>
+</a>
+
+<style>
+    a {
+        text-decoration: none;
+    }
+
+    a:hover {
+        color: var(--tx);
+    }
+
+    #container {
+        display: flex;
+        flex-direction: row;
+        margin-top: 3rem;
+        background-color: var(--bg-2);
+        border-radius: 24px;
+        padding: 16px 16px;
+        align-items: center;
+        gap: 1rem;
+        transition: box-shadow 0.1s ease-out;
+    }
+
+    #container:hover {
+        box-shadow: var(--shadow-elevation-medium);
+    }
+
+    #container:hover #icon {
+        transform: rotate(10deg);
+    }
+
+    #icon {
+        border-radius: 16px;
+        border: 1px solid rgba(0, 0, 0, 0.098);
+        transform: rotate(0deg);
+        transition: transform 0.1s ease-out;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        #icon {
+        border-radius: 16px;
+        border: 2px solid rgba(255, 255, 255, 0.09);
+    }
+    }
+
+    #title-and-description {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 0rem;
+    }
+
+    #title-and-description p {
+        font-size: 0.9rem;
+        color: var(--tx-2);
+    }
+
+    @media screen and (max-width: 450px) {
+        #container {
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        #title-and-description {
+            align-items: center;
+            text-align: center;
+        }
+    }
+</style>

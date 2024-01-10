@@ -1,14 +1,13 @@
 import { defineConfig } from "astro/config";
 import icon from "astro-icon";
 import mdx from "@astrojs/mdx";
-import vercel from "@astrojs/vercel/serverless";
 
-import preact from "@astrojs/preact";
+import vercel from "@astrojs/vercel/serverless";
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://marcel.io",
-  integrations: [icon(), mdx(), preact()],
+  integrations: [icon(), mdx()],
   markdown: {
     shikiConfig: {
       // Choose from Shiki's built-in themes (or add your own)
@@ -16,8 +15,8 @@ export default defineConfig({
       theme: "monokai",
       langs: [],
       // Enable word wrap to prevent horizontal scrolling
-      wrap: true
-    }
+      wrap: true,
+    },
   },
   // redirects: {
   //   "/feed": {
@@ -26,13 +25,13 @@ export default defineConfig({
   //   },
   // },
   image: {
-    domains: ["covers.openlibrary.org"]
+    domains: ["covers.openlibrary.org"],
   },
   build: {
     rollupOptions: {
-      external: ["markdown-it", "sanitize-html"]
-    }
+      external: ["markdown-it", "sanitize-html"],
+    },
   },
   output: "server",
-  adapter: vercel()
+  adapter: vercel(),
 });
