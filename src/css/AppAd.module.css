@@ -20,6 +20,7 @@
 }
 
 #container:hover {
+  filter: brightness(98%);
   box-shadow: var(--shadow-elevation-medium);
 }
 
@@ -40,6 +41,10 @@
   #icon {
     border-radius: 16px;
     border: 2px solid rgba(255, 255, 255, 0.09);
+  }
+
+  #container:hover {
+    filter: brightness(120%);
   }
 }
 
