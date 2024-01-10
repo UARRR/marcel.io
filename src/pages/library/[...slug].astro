@@ -33,7 +33,9 @@ const coverUrl = book?.data.isbn ? `https://covers.openlibrary.org/b/isbn/${book
     <article>
       { book.data.subtitle && <span id="subtitle">{book.data.subtitle}</span> }
       { book.data.allTimeFav && <AllTimeFavBadge /> }
-      { coverUrl &&  <Image src={coverUrl}  alt={`Cover of ${book.data.title}`} class="cover" width="200" height="50" /> }
+
+      { coverUrl &&  <img src={coverUrl}  alt={`Cover of ${book.data.title}`} class="cover" width="200" height="50" /> }
+
         <ul id="metadata">
           <li class="cell">
             <span>Author</span>
