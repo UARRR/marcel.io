@@ -45,7 +45,11 @@
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  gap: 0rem;
+  gap: 0.1rem;
+}
+
+#titleAndDescription p {
+  line-height: 1rem;
 }
 
 #titleAndDescription p {
