@@ -18,20 +18,20 @@ export default function AppAd() {
       image: "/images/henlo-icon.png",
       iconName: "henloIcon",
     },
-    {
-      title: "Peat",
-      description: "Peat is a habit tracking app that keeps you motivated",
-      url: "https://apps.apple.com/us/app/habit-tracker-peat/id6449402568",
-      image: "/images/peat-icon.png",
-      iconName: "peatIcon",
-    },
-    {
-      title: "Stoins",
-      description: "The only step counter that motivates you to walk more",
-      url: "https://apps.apple.com/us/app/stoins/id6443662308",
-      image: "/images/stoins-icon.png",
-      iconName: "stoinsIcon",
-    },
+    // {
+    //   title: "Peat",
+    //   description: "The habit tracking app that keeps you motivated",
+    //   url: "https://apps.apple.com/us/app/habit-tracker-peat/id6449402568",
+    //   image: "/images/peat-icon.png",
+    //   iconName: "peatIcon",
+    // },
+    // {
+    //   title: "Stoins",
+    //   description: "The only step counter that motivates you to walk more",
+    //   url: "https://apps.apple.com/us/app/stoins/id6443662308",
+    //   image: "/images/stoins-icon.png",
+    //   iconName: "stoinsIcon",
+    // },
   ];
 
   // State to hold the selected app
