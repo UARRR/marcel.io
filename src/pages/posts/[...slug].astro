@@ -24,22 +24,34 @@ const { Content } = await post.render();
 <Layout title={ post.data.title }>
   <article>
     <Content />
-    <TagsList tags={post.data.tags} />
+    <div class="timestamp-and-tags">
+      <span class="timestamp">{post.data.timestamp.toDateString()}</span>
+      <TagsList tags={post.data.tags} />
+    </div>
   </article>
 </Layout>
 
 <style>
-
-  #content {
-    /* border: 1px solid blue; */
-    /* display: flex;
-    flex-direction: column;
-    gap: 2rem; */
-  }
-
-
-
   #content :global(h2) + :global(p) {
     margin-top: 20px;
+  }
+  
+  .timestamp-and-tags {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.2rem;
+    align-content: flex-start;
+    align-items: flex-start;
+  }
+
+  .timestamp {
+    font-size: 0.8rem;
+    padding: 2px 8px;
+    color: var(--tx-2);
+    background-color: var(--bg-2);
+    border-radius: 30px;
+    white-space: nowrap;
   }
 </style>
