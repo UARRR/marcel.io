@@ -2,12 +2,14 @@
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 interface Props {
-	title?: string;
-	showingShort?: boolean
+	title?: string,
+	showingShort?: boolean,
 	frontmatter?: any,
+	maxWidth?: string,
 }
 
-const { title, frontmatter, showingShort = false } = Astro.props;
+const { title, frontmatter, showingShort = false, maxWidth = "600px" } = Astro.props;
+
 ---
 
 <!doctype html>
@@ -36,7 +38,6 @@ const { title, frontmatter, showingShort = false } = Astro.props;
 		
 	</head>
 	<body>
-		
 		<main>
 			<Header showingShort={showingShort} />
 			<div id="titleAndContent">
@@ -49,7 +50,7 @@ const { title, frontmatter, showingShort = false } = Astro.props;
 </html>
 
 
-<style is:global>
+<style is:global define:vars={{ maxWidth }}>
 	@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,500;0,6..12,600;0,6..12,700;1,6..12,400&family=Nunito:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
 
 	
@@ -147,7 +148,8 @@ const { title, frontmatter, showingShort = false } = Astro.props;
 	}
 
 	main {
-		max-width: 600px;
+		/* max-width: 600px; */
+		max-width: var(--maxWidth);
 		margin: auto;
 		display: flex;
 		flex-direction: column;
