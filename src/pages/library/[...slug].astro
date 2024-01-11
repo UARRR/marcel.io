@@ -29,7 +29,6 @@ const coverUrl = book?.data.isbn ? `https://covers.openlibrary.org/b/isbn/${book
 <Layout title={book.data.title}>
 
   <div id="content">
-
     <article>
       { book.data.subtitle && <span id="subtitle">{book.data.subtitle}</span> }
       { book.data.allTimeFav && <AllTimeFavBadge /> }

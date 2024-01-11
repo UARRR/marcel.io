@@ -10,6 +10,14 @@ allTimeFav: false
 isbn: "9780593332702"
 ---
 
+Morgan Housel wrote the fantastic [Psychology of Money](/library/the-psychology-of-money-morgan-housel) so I was looking forward to Same as Ever and even though it's different, I wasn't disappointed.
+
+The format was something I liked particulary well. No chapter is longer than 10 minutes. Every chapter flows into the next one and Housel manages to create a "just one more" feeling that is rarely seen in non-fiction books.
+
+The content wasn't life-changing but still interesting and thought provoking. Essentially, it's a list of things that never change and the underlying advice to keep concentrate on those, instead of trying to stay afloat in an ever-growing flow of information and complexity.
+
+## Here are a few things that tickled my brain:
+
 > Every event creates its own offspring, which impact the world in their own special ways. It makes prediction exceedingly hard. The absurdity of past connections should humble your confidence in predicting future ones.
 
 > I can promise you that will be the case going forward. The biggest risk and the most important news story of the next ten years will be something nobody is talking about today. No matter what year you’re reading this book, that truth will remain. I can say that confidently because it’s always been true. The fact that you can’t see it coming is exactly what makes it risky.
