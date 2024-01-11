@@ -170,6 +170,15 @@ const years: string[] = Object.keys(groupedBooks).sort((a, b) => parseInt(b) - p
         border-left: 2px solid gold;
     }
 
+    .fav:hover {
+        border-left: 8px solid gold;
+    }
+
+    .fav .author {
+        color: var(--tx) !important;
+        opacity: 0.7;
+    }
+
     
 
     .book span {
@@ -182,9 +191,6 @@ const years: string[] = Object.keys(groupedBooks).sort((a, b) => parseInt(b) - p
         padding-left: 1rem;
     }
 
-    .fav:hover {
-        border-left: 8px solid gold;
-    }
 
     .genre-rating-wrapper {
         display: flex;
