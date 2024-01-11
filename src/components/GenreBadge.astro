@@ -5,26 +5,78 @@ interface Props {
 
 const { genre } = Astro.props;
 
+interface GenreStyle {
+    light: {
+        backgroundColor: string,
+        foregroundColor: string
+    },
+    dark: {
+        backgroundColor: string,
+        foregroundColor: string
+    }
+}
+
 // Combined mapping for both background and foreground colors
-const genreStyles: Record<string, { backgroundColor: string, foregroundColor: string }> = {
-    'Science Fiction': { backgroundColor: '#E4EDF8', foregroundColor: '#588EF1' },
-    'Philosophy': { backgroundColor: '#F9F6D4', foregroundColor: '#CE9745' },
-    'Fantasy': { backgroundColor: '#F1E6FD', foregroundColor: '#AE6BF3' },
-    'Business': { backgroundColor: '#E3F5C7', foregroundColor: '#68A135' },
-    'Psychology': { backgroundColor: '#FBE5F1', foregroundColor: '#EB62A0' },
-    'Nature': { backgroundColor: '#DAFBE6', foregroundColor: '#4BCA78' },
-    'Productivity': { backgroundColor: '#FBECDB', foregroundColor: '#F76B29' },
+const genreStyles: Record<string, GenreStyle> = {
+    'Science Fiction': { 
+        light: {
+            backgroundColor: '#E4EDF8', 
+            foregroundColor: '#588EF1' 
+        }, 
+        dark: {
+            backgroundColor: '#12253B', 
+            foregroundColor: '#588EF1' 
+        }
+    },
+    'Philosophy': {
+        light: { backgroundColor: '#F9EFD4', foregroundColor: '#CE9745' },
+        dark: { backgroundColor: '#302711', foregroundColor: '#CE9745' }
+    },
+    'Fantasy': {
+        light: { backgroundColor: '#F1E6FD', foregroundColor: '#AE6BF3' },
+        dark: { backgroundColor: '#2E1747', foregroundColor: '#F1E6FD' }
+    },
+    'Business': {
+        light: { backgroundColor: '#E3F5C7', foregroundColor: '#68A135' },
+        dark: { backgroundColor: '#202D0C', foregroundColor: '#E3F5C7' }
+    },
+    'Psychology': {
+        light: { backgroundColor: '#FBE5F1', foregroundColor: '#EB62A0' },
+        dark: { backgroundColor: '#330B20', foregroundColor: '#FBE5F1' }
+    },
+    'Nature': {
+        light: { backgroundColor: '#DAFBE6', foregroundColor: '#37BA65' },
+        dark: { backgroundColor: '#0B2916', foregroundColor: '#DAFBE6' }
+    },
+    'Productivity': {
+        light: { backgroundColor: '#FBECDB', foregroundColor: '#F76B29' },
+        dark: { backgroundColor: '#2E1E0D', foregroundColor: '#FBECDB' }
+    },
 };
 
-const defaultStyle = { backgroundColor: 'var(--bg-3)', foregroundColor: 'var(--tx)' };
+const defaultStyle = {
+    light: { backgroundColor: 'var(--bg-2)', foregroundColor: 'var(--tx-2)' },
+    dark: { backgroundColor: 'var(--bg-2)', foregroundColor: 'var(--tx-2)' }
+};
 
-const { backgroundColor, foregroundColor } = genreStyles[genre] || defaultStyle;
+// const selectedStyle = genreStyles[genre]?.light || defaultStyle.light;
+
+
+// const { backgroundColor, foregroundColor } = selectedStyle;
+
+const genreStyle = genreStyles[genre] || defaultStyle;
+
+
+const backgroundColorLight = genreStyle.light.backgroundColor;
+const foregroundColorLight = genreStyle.light.foregroundColor;
+const backgroundColorDark = genreStyle.dark.backgroundColor;
+const foregroundColorDark = genreStyle.dark.foregroundColor;
 
 ---
 
-<span style={{ backgroundColor, color: foregroundColor }}>{genre}</span>
+<span>{genre}</span>
 
-<style>
+<style define:vars={{ backgroundColorLight, backgroundColorDark, foregroundColorLight, foregroundColorDark }}>
     span {
         display: inline-block;
         max-width: fit-content;
@@ -32,5 +84,14 @@ const { backgroundColor, foregroundColor } = genreStyles[genre] || defaultStyle;
         border-radius: 30px;
         font-size: 0.8rem;
         white-space: nowrap;
+        background-color: var(--backgroundColorLight);
+        color: var(--foregroundColorLight);
+    }
+
+    @media (prefers-color-scheme: dark) {
+        span {
+            background-color: var(--backgroundColorDark);
+            color: var(--foregroundColorDark);
+        }
     }
 </style>
