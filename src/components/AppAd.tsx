@@ -54,26 +54,31 @@ export default function AppAd() {
   return (
     <a href={randomApp.url} className={styles.link}>
       <div id={styles.container}>
-        <img
-          src={randomApp.image}
-          alt={`${randomApp.title} Icon`}
-          width={60}
-          height={60}
-          id={styles.icon}
-        />
-
-        <div id={styles.titleAndDescription}>
-          <h3>{randomApp.title}</h3>
-          <p>{randomApp.description}</p>
+        <div className={styles.content}>
+          <img
+            src={randomApp.image}
+            alt={`${randomApp.title} Icon`}
+            width={60}
+            height={60}
+            id={styles.icon}
+          />
+          <div id={styles.titleAndDescription}>
+            <h3>{randomApp.title}</h3>
+            <p>{randomApp.description}</p>
+          </div>
+          <img
+            src="/images/app-store.svg"
+            alt={`Download ${randomApp.title}`}
+            width={160}
+            height={60}
+            id="appStore"
+          />
         </div>
 
-        <img
-          src="/images/app-store.svg"
-          alt={`Download ${randomApp.title}`}
-          width={160}
-          height={60}
-          id="appStore"
-        />
+        <p className={styles.alert}>
+          {randomApp.title} is one of the apps I designed and coded. Give it a
+          try!
+        </p>
       </div>
     </a>
   );
