@@ -79,23 +79,23 @@ const lastYear = sortedYears[sortedYears.length - 1];
             <div class="year-and-tiptop">
                 <section class="year">
                     <h3 class="yearTitle">{year}</h3>
-                    {Object.keys(postsGroupedByYear[year]).map(month => (
+                    {Object.keys(postsGroupedByYear[year]).map((month, monthIndex, monthArray) => (
                         <div class="month">
                             <ol class="postList">
-                                {postsGroupedByYear[year][month].map(post => (
-                                    <a href={`/posts/${post.slug}`} >
-                                <div class="cell">
-                                    <span class="title">{post.data.title}</span>
-                                    <div class="line" />
-                                    <!--
-                                    <div class="tags">
-                                        {post.data.tags.map((tag: string) =>
-                                            <span class="tag">{tag}</span>
-                                        )}
-                                    </div>
-                                    -->
-                                    <span class="date">{post.data.timestamp.toDateString().split(' ').slice(1).join(' ')}</span>
-                                </div>
+                                {postsGroupedByYear[year][month].map((post, postIndex, postArray) => (
+                                    <a href={`/posts/${post.slug}`} class={(monthIndex === monthArray.length - 1) && (postIndex === postArray.length - 1) ? 'last-post' : ''}>
+                                        <div class="cell">
+                                            <span class="title">{post.data.title}</span>
+                                            <div class="line" />
+                                            <!--
+                                            <div class="tags">
+                                                {post.data.tags.map((tag: string) =>
+                                                    <span class="tag">{tag}</span>
+                                                )}
+                                            </div>
+                                            -->
+                                            <span class="date">{post.data.timestamp.toDateString().split(' ').slice(1).join(' ')}</span>
+                                        </div>
                             </a>
                                 ))}
                             </ol>
@@ -129,7 +129,6 @@ const lastYear = sortedYears[sortedYears.length - 1];
     .year {
         display: flex;
         flex-direction: column;
-        /* gap: 1.5rem; */
     }
 
     .yearTitle {
@@ -142,7 +141,6 @@ const lastYear = sortedYears[sortedYears.length - 1];
         display: flex;
         flex-direction: column;
         gap: 0rem;
-        /* border: 1px solid green; */
     }
 
     .month h3 {
@@ -150,9 +148,6 @@ const lastYear = sortedYears[sortedYears.length - 1];
         font-size: 1rem;
         font-weight: 300;
         color: var(--tx-3);
-        /* flex-shrink: 0; */
-        /* border: 1px solid red; */
-        /* width: 100px; */
     }
 
     .horizontalPadding {
@@ -263,7 +258,11 @@ const lastYear = sortedYears[sortedYears.length - 1];
             border-radius: 0px;
         }
 
-        .postList a:last-child .cell {
+        .postList a .cell {
+            border-bottom: 1px solid var(--bg-2);
+        }
+
+        .postList a.last-post .cell {
             border-bottom: none;
         }
     }

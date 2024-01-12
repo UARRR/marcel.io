@@ -15,6 +15,7 @@
   border-radius: 24px;
   transition: box-shadow 0.1s ease-out;
   overflow: hidden;
+  gap: 0rem !important;
 }
 
 .content {
@@ -74,10 +75,8 @@
 
 .alert {
   border-top: 1px solid var(--bg-3);
-  width: 100%;
-  /* background-color: var(--bg-3); */
   color: var(--tx-3);
-  padding: 8px 8px;
+  padding: 8px 16px !important;
   font-size: 0.8rem;
   text-align: center;
 }
