@@ -7,6 +7,10 @@
   text-decoration: none;
 }
 
+a {
+  color: var(--tx-3);
+}
+
 #container {
   display: flex;
   flex-direction: column;

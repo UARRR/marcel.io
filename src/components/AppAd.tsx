@@ -76,7 +76,7 @@ export default function AppAd() {
         </div>
 
         <p className={styles.alert}>
-          {randomApp.title} is one of the apps I designed and coded. Give it a
+          {randomApp.title} is one of the <a href="https://tiptop.software">apps</a> I designed and coded. Give it a
           try!
         </p>
       </div>
