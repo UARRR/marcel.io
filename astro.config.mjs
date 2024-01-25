@@ -18,12 +18,6 @@ export default defineConfig({
       wrap: true
     }
   },
-  // redirects: {
-  //   "/feed": {
-  //     status: 302,
-  //     destination: "/feed.xml",
-  //   },
-  // },
   image: {
     domains: ["covers.openlibrary.org"]
   },

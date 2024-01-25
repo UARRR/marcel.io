@@ -16,7 +16,11 @@ export async function GET(context) {
       title: post.data.title,
       pubDate: post.data.timestamp,
       link: `/posts/${post.slug}/`,
-      content: sanitizeHtml(parser.render(post.body)),
+      // content: sanitizeHtml(parser.render(post.body)),
+      // content: sanitizeHtml(parser.render(post.body)),
+      content: sanitizeHtml(parser.render(post.body), {
+        allowedTags: sanitizeHtml.defaults.allowedTags.concat(["img"]),
+      }),
       ...post.data,
     })),
     customData: `<language>en-us</language>`,

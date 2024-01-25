@@ -62,6 +62,7 @@ export async function GET(context) {
 
       // Append star rating for books
       let content = sanitizeHtml(parser.render(item.body || ""));
+
       if (item.collection === "books" && item.data.rating) {
         const starRating = generateStarRating(item.data.rating);
         content += `<br>Rating: ${starRating}`;
