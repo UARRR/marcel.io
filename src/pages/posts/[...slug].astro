@@ -31,11 +31,38 @@ const { Content } = await post.render();
   </article>
 </Layout>
 
+
+<style is:global>
+
+  .footnotes::before {
+      content: ''; /* Required to generate the box */
+      display: block; /* Makes it a block element */
+      width: 150px; /* Width of the horizontal line */
+      height: 1px; /* Height of the line */
+      background-color: var(--bg-3); /* Color of the line */
+      margin: 0rem 0rem 1rem 0rem; /* Center the line and add space below */
+  }
+
+  #footnote-label {
+    display: none;
+   }
+
+   .footnotes ol li {
+      font-size: 0.9rem;
+      color: var(--tx-2);
+   }
+</style>
+
 <style>
   #content :global(h2) + :global(p) {
     margin-top: 20px;
   }
   
+  .footnotes {
+    display: none !important;
+    background-color: red !important;
+  }
+
   .timestamp-and-tags {
     margin-top: 3rem;
     display: flex;
@@ -54,4 +81,6 @@ const { Content } = await post.render();
     border-radius: 30px;
     white-space: nowrap;
   }
+
+
 </style>
